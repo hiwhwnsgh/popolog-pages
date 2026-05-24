@@ -1,0 +1,166 @@
+/* PopoLog 정책·약관 페이지 공용 스타일.
+   앱 톤(따뜻한 코랄/크림) 과 결을 맞추되, 법무 문서답게 가독성을 최우선으로 두었다. */
+
+:root {
+  --bg: #FFF8F3;
+  --surface: #FFFFFF;
+  --text: #2C2823;
+  --text-muted: #6E665C;
+  --accent: #E47C5F;     /* PopoLog Coral500 톤 */
+  --accent-soft: #FFEDE4;
+  --border: #EFE4D7;
+  --max-width: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 20px;
+}
+
+header .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .brand {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+}
+
+header nav a {
+  margin-left: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 20px 80px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 36px 0 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+h2:first-of-type { border-top: none; padding-top: 0; }
+
+h3 {
+  font-size: 16px;
+  margin: 20px 0 8px;
+}
+
+p, ul, ol { margin: 0 0 12px; }
+
+ul, ol { padding-left: 22px; }
+
+li { margin-bottom: 4px; }
+
+code {
+  background: var(--accent-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+footer a { color: var(--text-muted); margin: 0 10px; }
+
+/* 랜딩 전용 */
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.hero p { color: var(--text-muted); margin-bottom: 28px; }
+
+.links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.links a {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 12px 20px;
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.links a:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
