@@ -10,6 +10,24 @@
   --accent-soft: #FFEDE4;
   --border: #EFE4D7;
   --max-width: 720px;
+  /* 폼 컨트롤·기본 스크롤바 색을 시스템에 위임하기 위한 힌트.
+     없으면 다크모드에서 input·scrollbar 가 라이트 모드로 강제된다. */
+  color-scheme: light dark;
+}
+
+/* PopoLog 앱은 정책 페이지를 인앱 WebView 로 띄우며 WebView 배경을 투명으로 둔다.
+   페이지가 다크모드 토큰을 직접 가지지 않으면 다크 사용자에게 흰 페이지가 강제 노출되므로,
+   prefers-color-scheme 으로 변수를 갈아끼워 동일 마크업으로 양쪽을 모두 커버한다. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1A1714;
+    --surface: #25201C;
+    --text: #F2EAE0;
+    --text-muted: #A89E92;
+    --accent: #FF8A75;       /* 다크 배경 대비 보정 — 살짝 밝게 */
+    --accent-soft: #3A2A24;
+    --border: #3A332D;
+  }
 }
 
 * { box-sizing: border-box; }
