@@ -3,25 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PopoLog</title>
   <meta name="description" content="반려동물의 일상·건강·추억을 가족과 함께 기록하는 앱, PopoLog." />
+  <meta name="color-scheme" content="light" />
+  <title>PopoLog</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <main>
-    <section class="hero">
+  <main class="page-narrow">
+    <section class="hero index-hero">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="/notices/img/lg_popo_circle.webp" alt="" />
+      </span>
+
       <h1>PopoLog</h1>
       <p>우리 아이의 매일을 가족과 함께 기록해요.</p>
-      <div class="links">
+
+      <div class="index-links">
         <a href="/privacy">개인정보처리방침</a>
         <a href="/terms">서비스 이용약관</a>
       </div>
     </section>
   </main>
-  <footer>
-    <a href="/privacy">개인정보처리방침</a>
-    <a href="/terms">서비스 이용약관</a>
-    <div style="margin-top: 8px;">© PopoLog</div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links" aria-label="푸터 링크">
+        <a href="/privacy">개인정보처리방침</a>
+        <a href="/terms">서비스 이용약관</a>
+      </div>
+
+      <div>© <span id="currentYear">2026</span> PopoLog</div>
+    </div>
   </footer>
+
+  <script>
+    const currentYearElement = document.getElementById("currentYear");
+    if (currentYearElement) {
+      currentYearElement.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>
