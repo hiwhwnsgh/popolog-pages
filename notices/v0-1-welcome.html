@@ -119,9 +119,14 @@
       display: grid;
       place-items: center;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--color-primary), #ffad8f);
-      color: #fff;
+      overflow: hidden;
       box-shadow: 0 10px 22px rgba(255, 122, 102, 0.28);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .nav-list {
@@ -172,15 +177,16 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .hero::after {
-      content: "🐾";
+    .hero-decoration {
       position: absolute;
-      right: clamp(20px, 6vw, 64px);
-      bottom: -10px;
-      font-size: clamp(5rem, 12vw, 9rem);
-      opacity: 0.08;
+      right: clamp(-10px, 2vw, 24px);
+      bottom: clamp(-30px, -3vw, -10px);
+      width: clamp(180px, 28vw, 280px);
+      height: auto;
+      opacity: 0.18;
       transform: rotate(-12deg);
       pointer-events: none;
+      user-select: none;
     }
 
     .eyebrow {
@@ -285,13 +291,20 @@
     }
 
     .feature-icon {
-      width: 42px;
-      height: 42px;
+      width: 56px;
+      height: 56px;
       display: grid;
       place-items: center;
       border-radius: 16px;
       background: var(--color-surface-soft);
-      font-size: 1.25rem;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .feature-icon img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
     }
 
     .feature-card strong {
@@ -499,7 +512,9 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="brand" aria-label="PopoLog 홈으로 이동">
-        <span class="brand-mark" aria-hidden="true">🐶</span>
+        <span class="brand-mark" aria-hidden="true">
+          <img src="img/lg_popo_circle.webp" alt="" />
+        </span>
         <span>PopoLog</span>
       </a>
 
@@ -515,6 +530,13 @@
   <main id="main-content" class="page">
     <article aria-labelledby="notice-title">
       <section class="hero">
+        <img
+          class="hero-decoration"
+          src="img/lg_popo_circle.webp"
+          alt=""
+          aria-hidden="true"
+        />
+
         <span class="eyebrow">🐾 Beta Notice</span>
 
         <h1 id="notice-title" class="hero-title">
@@ -543,7 +565,9 @@
 
         <ul class="feature-grid">
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">📸</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_record.webp" alt="" />
+            </span>
             <div>
               <strong>일상 기록</strong>
               <p>오늘 있었던 일을 사진과 메모로 남겨요.</p>
@@ -551,7 +575,9 @@
           </li>
 
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🩺</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_scale.webp" alt="" />
+            </span>
             <div>
               <strong>건강 기록</strong>
               <p>몸무게, 식사, 배변, 증상을 한 곳에 모아 관리해요.</p>
@@ -559,7 +585,9 @@
           </li>
 
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">💊</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_drug.webp" alt="" />
+            </span>
             <div>
               <strong>약 알람</strong>
               <p>정해진 시간에 잊지 않고 챙길 수 있도록 알려드려요.</p>
@@ -567,7 +595,9 @@
           </li>
 
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">👨‍👩‍👧</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_family.webp" alt="" />
+            </span>
             <div>
               <strong>가족 공유</strong>
               <p>초대 코드로 가족을 부르면 함께 보고 함께 기록해요.</p>
@@ -575,7 +605,9 @@
           </li>
 
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🗓️</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_calendar.webp" alt="" />
+            </span>
             <div>
               <strong>캘린더</strong>
               <p>날짜별 기록을 한눈에 확인할 수 있어요.</p>
@@ -583,10 +615,12 @@
           </li>
 
           <li class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🧡</span>
+            <span class="feature-icon" aria-hidden="true">
+              <img src="img/ic_3d_home.webp" alt="" />
+            </span>
             <div>
               <strong>타임라인</strong>
-              <p>지난 기록을 따뜻한 흐름으로 돌아볼 수 있어요.</p>
+              <p>우리 아이의 추억을 한 공간에 모아 돌아볼 수 있어요.</p>
             </div>
           </li>
         </ul>
