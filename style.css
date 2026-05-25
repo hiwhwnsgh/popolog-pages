@@ -1,184 +1,585 @@
-/* PopoLog 정책·약관 페이지 공용 스타일.
-   앱 톤(따뜻한 코랄/크림) 과 결을 맞추되, 법무 문서답게 가독성을 최우선으로 두었다. */
+/* PopoLog 정적 페이지 공용 스타일.
+   welcome 공지(notices/v0-1-welcome.html) 와 동일한 디자인 시스템을 약관·정책 페이지에도 적용한다.
+   라이트 톤 고정(코랄/크림). 다크 모드 별도 대응은 하지 않는다 — meta color-scheme 으로 명시. */
 
 :root {
-  --bg: #FFF8F3;
-  --surface: #FFFFFF;
-  --text: #2C2823;
-  --text-muted: #6E665C;
-  --accent: #E47C5F;     /* PopoLog Coral500 톤 */
-  --accent-soft: #FFEDE4;
-  --border: #EFE4D7;
-  --max-width: 720px;
-  /* 폼 컨트롤·기본 스크롤바 색을 시스템에 위임하기 위한 힌트.
-     없으면 다크모드에서 input·scrollbar 가 라이트 모드로 강제된다. */
-  color-scheme: light dark;
-}
+  --color-bg: #fff8f5;
+  --color-surface: #ffffff;
+  --color-surface-soft: #fff1ec;
+  --color-primary: #ff7a66;
+  --color-primary-dark: #e85f4f;
+  --color-primary-light: #ffe1d9;
+  --color-text: #2d2523;
+  --color-muted: #756966;
+  --color-border: #f3d8cf;
+  --color-card: #fffdfb;
 
-/* PopoLog 앱은 정책 페이지를 인앱 WebView 로 띄우며 WebView 배경을 투명으로 둔다.
-   페이지가 다크모드 토큰을 직접 가지지 않으면 다크 사용자에게 흰 페이지가 강제 노출되므로,
-   prefers-color-scheme 으로 변수를 갈아끼워 동일 마크업으로 양쪽을 모두 커버한다. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1A1714;
-    --surface: #25201C;
-    --text: #F2EAE0;
-    --text-muted: #A89E92;
-    --accent: #FF8A75;       /* 다크 배경 대비 보정 — 살짝 밝게 */
-    --accent-soft: #3A2A24;
-    --border: #3A332D;
-  }
+  --shadow-soft: 0 16px 40px rgba(255, 122, 102, 0.12);
+  --shadow-card: 0 10px 30px rgba(94, 63, 55, 0.08);
+
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+
+  --container: 920px;
+  --container-narrow: 760px;
+  --header-height: 72px;
 }
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  min-height: 100vh;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    "Pretendard",
+    "Noto Sans KR",
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 201, 188, 0.45), transparent 32rem),
+    linear-gradient(180deg, #fff8f5 0%, #fffdfb 100%);
+  line-height: 1.75;
+  word-break: keep-all;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 20px;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-header .inner {
-  max-width: var(--max-width);
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(255, 122, 102, 0.45);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus { top: 16px; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Header / Footer
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: var(--header-height);
+  border-bottom: 1px solid rgba(243, 216, 207, 0.8);
+  background: rgba(255, 248, 245, 0.86);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.header-inner {
+  width: min(100% - 32px, var(--container));
+  min-height: var(--header-height);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
-header .brand {
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--text);
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
 }
 
-header nav a {
-  margin-left: 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-muted);
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(255, 122, 102, 0.28);
 }
 
-main {
-  max-width: var(--max-width);
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  font-weight: 650;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-link:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: #fffdfb;
+}
+
+.footer-inner {
+  width: min(100% - 32px, var(--container));
   margin: 0 auto;
-  padding: 36px 20px 80px;
+  padding: 26px 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--color-muted);
+  font-size: 0.92rem;
 }
 
-h1 {
-  font-size: 28px;
-  margin: 0 0 8px;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a { font-weight: 650; }
+.footer-links a:hover { color: var(--color-primary-dark); }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Layout
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.page {
+  width: min(100% - 32px, var(--container));
+  margin: 0 auto;
+  padding: 54px 0 72px;
+}
+
+.page-narrow {
+  width: min(100% - 32px, var(--container-narrow));
+  margin: 0 auto;
+  padding: 54px 0 72px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Hero
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(32px, 5vw, 56px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 241, 236, 0.96)),
+    var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-decoration {
+  position: absolute;
+  right: clamp(-10px, 2vw, 24px);
+  bottom: clamp(-30px, -3vw, -10px);
+  width: clamp(180px, 28vw, 280px);
+  height: auto;
+  opacity: 0.18;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  user-select: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.hero-title {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.16;
+  letter-spacing: -0.055em;
+}
+
+.hero-description {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+}
+
+.hero-description strong { color: var(--color-primary-dark); }
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 24px;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+}
+
+.post-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Section card
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  margin-top: 28px;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-card);
+}
+
+.section-header {
+  margin-bottom: 22px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.section-description {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Legal document (terms / privacy)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* 본문 카드 안의 타이포 — 가독성 우선. */
+.legal-body h2 {
+  margin: 40px 0 14px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+.legal-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.legal-body h3 {
+  margin: 24px 0 10px;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+}
+
+.legal-body p,
+.legal-body ul,
+.legal-body ol {
+  margin: 0 0 14px;
+  color: #3d3431;
+}
+
+.legal-body ul,
+.legal-body ol {
+  padding-left: 22px;
+}
+
+.legal-body li {
+  margin-bottom: 6px;
+}
+
+.legal-body li > ul,
+.legal-body li > ol {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.legal-body strong {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.legal-body a {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.legal-body a:hover {
+  color: var(--color-primary);
+}
+
+.legal-body code {
+  background: var(--color-primary-light);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.92em;
+}
+
+/* Table — 정책의 수집 항목/위탁 업체 등. 모바일에서는 카드처럼 보이도록 가로 스크롤. */
+.legal-body .table-scroll {
+  overflow-x: auto;
+  margin: 0 0 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.legal-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.legal-body th,
+.legal-body td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.legal-body th {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.legal-body tr:last-child td {
+  border-bottom: none;
+}
+
+/* TOC — 페이지 상단의 빠른 이동 카드. */
+.toc-title {
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
   letter-spacing: -0.01em;
 }
 
-.meta {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-bottom: 32px;
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
 }
 
-h2 {
-  font-size: 20px;
-  margin: 36px 0 12px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
+.toc-list li {
+  counter-increment: toc;
 }
 
-h2:first-of-type { border-top: none; padding-top: 0; }
-
-h3 {
-  font-size: 16px;
-  margin: 20px 0 8px;
-}
-
-p, ul, ol { margin: 0 0 12px; }
-
-ul, ol { padding-left: 22px; }
-
-li { margin-bottom: 4px; }
-
-code {
-  background: var(--accent-soft);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-th, td {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  text-align: left;
-  vertical-align: top;
-}
-
-th {
-  background: var(--accent-soft);
-  font-weight: 600;
-}
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px 20px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
-footer a { color: var(--text-muted); margin: 0 10px; }
-
-/* 랜딩 전용 */
-.hero {
-  text-align: center;
-  padding: 60px 20px 40px;
-}
-
-.hero h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
-}
-
-.hero p { color: var(--text-muted); margin-bottom: 28px; }
-
-.links {
+.toc-list a {
   display: flex;
-  gap: 12px;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: 0.96rem;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.toc-list a:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.toc-list a::before {
+  content: counter(toc, decimal-leading-zero);
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Index (랜딩)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.index-hero {
+  text-align: center;
+  padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 56px);
+}
+
+.index-hero .brand-mark {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 22px;
+}
+
+.index-hero h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  letter-spacing: -0.055em;
+  line-height: 1.12;
+}
+
+.index-hero p {
+  margin: 0 0 30px;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+}
+
+.index-links {
+  display: flex;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.links a {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 12px 20px;
+.index-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  color: var(--text);
-  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.96rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.links a:hover {
-  border-color: var(--accent);
-  text-decoration: none;
+.index-links a:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .site-header {
+    position: static;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 0;
+    gap: 12px;
+  }
+
+  .nav-list {
+    width: 100%;
+  }
+
+  .nav-link {
+    background: rgba(255, 255, 255, 0.65);
+  }
+
+  .page,
+  .page-narrow {
+    padding: 28px 0 56px;
+  }
+
+  .hero {
+    padding: 30px 22px;
+  }
+
+  .section {
+    padding: 24px 20px;
+  }
+
+  .toc-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .legal-body th {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }

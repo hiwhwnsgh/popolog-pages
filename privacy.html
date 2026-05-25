@@ -3,252 +3,320 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="PopoLog 개인정보처리방침. PopoLog 가 어떤 정보를 어떻게 수집·이용·보관·파기하는지 안내합니다." />
+  <meta name="color-scheme" content="light" />
   <title>개인정보처리방침 - PopoLog</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header>
-    <div class="inner">
-      <a href="/" class="brand">PopoLog</a>
-      <nav>
-        <a href="/privacy">개인정보처리방침</a>
-        <a href="/terms">이용약관</a>
+  <a class="skip-link" href="#main-content">본문으로 이동</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="PopoLog 홈으로 이동">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/notices/img/lg_popo_circle.webp" alt="" />
+        </span>
+        <span>PopoLog</span>
+      </a>
+
+      <nav aria-label="주요 링크">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="/privacy">개인정보처리방침</a></li>
+          <li><a class="nav-link" href="/terms">이용약관</a></li>
+        </ul>
       </nav>
     </div>
   </header>
-  <main>
-    <h1>개인정보처리방침</h1>
-    <p class="meta">
-      시행일: 출시일에 갱신 예정 · 최종 개정일: 2026년 5월 25일
-    </p>
 
-    <p>
-      준호네소프트웨어(이하 "회사")가 운영하는 PopoLog(이하 "서비스")는 이용자의 개인정보를 소중히
-      다루며 「개인정보 보호법」, 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 등 관련 법령을
-      준수합니다. 본 방침은 서비스가 어떤 정보를 어떤 목적으로 수집·이용·보관·파기하는지 안내합니다.
-    </p>
+  <main id="main-content" class="page-narrow">
+    <article aria-labelledby="privacy-title">
+      <section class="hero">
+        <img
+          class="hero-decoration"
+          src="/notices/img/lg_popo_circle.webp"
+          alt=""
+          aria-hidden="true"
+        />
 
-    <h2>1. 수집하는 개인정보 항목</h2>
-    <p>회사는 서비스 제공에 필요한 최소한의 개인정보를 다음과 같이 수집합니다.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>항목</th>
-          <th>수집 시점</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>회원가입</td>
-          <td>
-            소셜 로그인 식별자(Apple ID, Google 계정 식별자), 이메일,
-            닉네임(소셜 로그인 시 제공된 이름), 프로필 이미지 URL(선택)
-          </td>
-          <td>가입 시</td>
-        </tr>
-        <tr>
-          <td>약관 동의 기록</td>
-          <td>이용약관·개인정보처리방침 동의 시각 및 버전, 만 14세 이상 확인 시각</td>
-          <td>가입 시 및 약관 개정 시 재동의 시점</td>
-        </tr>
-        <tr>
-          <td>반려동물 정보</td>
-          <td>
-            반려동물의 이름, 종(개·고양이 등), 품종, 성별, 생일, 입양일, 소개글,
-            프로필 사진, 테마 색상
-          </td>
-          <td>이용자가 직접 입력 시</td>
-        </tr>
-        <tr>
-          <td>일상·건강 기록</td>
-          <td>
-            식사·산책·배변·수면·약 복용·접종·병원 방문·미용 등 기록 내용,
-            기록에 첨부된 사진, 기록 날짜·시간, 약 복용 체크 기록
-          </td>
-          <td>이용자가 직접 입력 시</td>
-        </tr>
-        <tr>
-          <td>가족 공유</td>
-          <td>가족 그룹 멤버십, 초대 코드, 가족 내 호칭, 다른 멤버의 기록에 단 댓글·좋아요</td>
-          <td>가족 생성·초대 수락·상호작용 시</td>
-        </tr>
-        <tr>
-          <td>알림 설정</td>
-          <td>알림 수신 동의 여부, 기록 리마인더 토글</td>
-          <td>가입 시(기본값) 및 사용자가 토글 변경 시</td>
-        </tr>
-        <tr>
-          <td>자동 수집</td>
-          <td>
-            푸시 알림 토큰(FCM/APNs), 기기 정보(OS 종류·버전, 앱 버전),
-            접속 로그(접속 시각, 오류 로그)
-          </td>
-          <td>앱 실행·푸시 권한 허용 시</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>
-      회사는 주민등록번호·이름·전화번호·주소 등 고유 식별 정보나 결제 정보를 수집하지 않습니다.
-      이용자의 실시간 위치 정보 또한 수집하지 않습니다.
-    </p>
+        <span class="eyebrow">🔒 Privacy</span>
 
-    <h2>2. 개인정보의 수집·이용 목적</h2>
-    <ul>
-      <li><strong>회원 식별 및 로그인 유지</strong>: 소셜 로그인 식별자·이메일</li>
-      <li><strong>서비스 제공</strong>: 반려동물 기록 저장·표시, 일정 리마인더, 가족 공유, 댓글·좋아요</li>
-      <li><strong>푸시 알림 발송</strong>: 가족 활동(기록 추가·완료, 댓글 등) 및 약 복용 리마인더 알림</li>
-      <li><strong>오류·악용 대응</strong>: 비정상 요청 차단, 장애 대응을 위한 접속 로그 분석</li>
-      <li><strong>법적 의무 이행</strong>: 「전자상거래법」·「통신비밀보호법」 등 관련 법령상 의무 준수</li>
-      <li><strong>고객 응대</strong>: 공지사항 전달, 문의 회신</li>
-    </ul>
+        <h1 id="privacy-title" class="hero-title">개인정보처리방침</h1>
 
-    <h2>3. 개인정보의 보유 및 이용 기간</h2>
-    <ol>
-      <li>
-        이용자의 개인정보는 회원 탈퇴 또는 동의 철회 시 <strong>지체 없이 파기</strong>합니다.
-        앱 내 "마이 → 회원 탈퇴" 기능 사용 시 회원 정보·반려동물 정보·기록·사진·가족 멤버십 등이
-        즉시 삭제됩니다.
-      </li>
-      <li>
-        다만 다음의 경우 관련 법령에 따라 명시된 기간 동안 별도 보관합니다.
+        <p class="hero-description">
+          PopoLog 는 이용자의 개인정보를 소중히 다뤄요. <strong>어떤 정보를, 어떤 목적으로, 얼마나 오래 보관하는지</strong>를 투명하게 안내합니다.
+        </p>
+
+        <div class="post-meta" aria-label="시행/개정 정보">
+          <span>🗓️ 시행일: 출시일에 갱신 예정</span>
+          <span>✍️ 최종 개정일: 2026년 5월 25일</span>
+        </div>
+      </section>
+
+      <nav class="section" aria-labelledby="toc-title">
+        <h2 id="toc-title" class="toc-title">목차</h2>
+        <ol class="toc-list">
+          <li><a href="#section-1">수집하는 개인정보 항목</a></li>
+          <li><a href="#section-2">수집·이용 목적</a></li>
+          <li><a href="#section-3">보유 및 이용 기간</a></li>
+          <li><a href="#section-4">만 14세 미만 아동</a></li>
+          <li><a href="#section-5">제3자 제공</a></li>
+          <li><a href="#section-6">처리 위탁 및 국외 이전</a></li>
+          <li><a href="#section-7">이용자의 권리</a></li>
+          <li><a href="#section-8">안전성 확보 조치</a></li>
+          <li><a href="#section-9">쿠키 등 자동 수집</a></li>
+          <li><a href="#section-10">개인정보 보호책임자</a></li>
+          <li><a href="#section-11">정책 변경 안내</a></li>
+          <li><a href="#section-12">회사 정보</a></li>
+        </ol>
+      </nav>
+
+      <section class="section legal-body" aria-label="개인정보처리방침 본문">
+        <p>
+          준호네소프트웨어(이하 "회사")가 운영하는 PopoLog(이하 "서비스")는 이용자의 개인정보를 소중히
+          다루며 「개인정보 보호법」, 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 등 관련 법령을
+          준수합니다. 본 방침은 서비스가 어떤 정보를 어떤 목적으로 수집·이용·보관·파기하는지 안내합니다.
+        </p>
+
+        <h2 id="section-1">1. 수집하는 개인정보 항목</h2>
+        <p>회사는 서비스 제공에 필요한 최소한의 개인정보를 다음과 같이 수집합니다.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>항목</th>
+                <th>수집 시점</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>회원가입</td>
+                <td>
+                  소셜 로그인 식별자(Apple ID, Google 계정 식별자), 이메일,
+                  닉네임(소셜 로그인 시 제공된 이름), 프로필 이미지 URL(선택)
+                </td>
+                <td>가입 시</td>
+              </tr>
+              <tr>
+                <td>약관 동의 기록</td>
+                <td>이용약관·개인정보처리방침 동의 시각 및 버전, 만 14세 이상 확인 시각</td>
+                <td>가입 시 및 약관 개정 시 재동의 시점</td>
+              </tr>
+              <tr>
+                <td>반려동물 정보</td>
+                <td>
+                  반려동물의 이름, 종(개·고양이 등), 품종, 성별, 생일, 입양일, 소개글,
+                  프로필 사진, 테마 색상
+                </td>
+                <td>이용자가 직접 입력 시</td>
+              </tr>
+              <tr>
+                <td>일상·건강 기록</td>
+                <td>
+                  식사·산책·배변·수면·약 복용·접종·병원 방문·미용 등 기록 내용,
+                  기록에 첨부된 사진, 기록 날짜·시간, 약 복용 체크 기록
+                </td>
+                <td>이용자가 직접 입력 시</td>
+              </tr>
+              <tr>
+                <td>가족 공유</td>
+                <td>가족 그룹 멤버십, 초대 코드, 가족 내 호칭, 다른 멤버의 기록에 단 댓글·좋아요</td>
+                <td>가족 생성·초대 수락·상호작용 시</td>
+              </tr>
+              <tr>
+                <td>알림 설정</td>
+                <td>알림 수신 동의 여부, 기록 리마인더 토글</td>
+                <td>가입 시(기본값) 및 사용자가 토글 변경 시</td>
+              </tr>
+              <tr>
+                <td>자동 수집</td>
+                <td>
+                  푸시 알림 토큰(FCM/APNs), 기기 정보(OS 종류·버전, 앱 버전),
+                  접속 로그(접속 시각, 오류 로그)
+                </td>
+                <td>앱 실행·푸시 권한 허용 시</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          회사는 주민등록번호·이름·전화번호·주소 등 고유 식별 정보나 결제 정보를 수집하지 않습니다.
+          이용자의 실시간 위치 정보 또한 수집하지 않습니다.
+        </p>
+
+        <h2 id="section-2">2. 개인정보의 수집·이용 목적</h2>
         <ul>
-          <li>접속 로그(통신비밀보호법): 3개월</li>
-          <li>관련 법령에 따른 보존 의무가 있는 기록: 해당 법령에서 정한 기간</li>
+          <li><strong>회원 식별 및 로그인 유지</strong>: 소셜 로그인 식별자·이메일</li>
+          <li><strong>서비스 제공</strong>: 반려동물 기록 저장·표시, 일정 리마인더, 가족 공유, 댓글·좋아요</li>
+          <li><strong>푸시 알림 발송</strong>: 가족 활동(기록 추가·완료, 댓글 등) 및 약 복용 리마인더 알림</li>
+          <li><strong>오류·악용 대응</strong>: 비정상 요청 차단, 장애 대응을 위한 접속 로그 분석</li>
+          <li><strong>법적 의무 이행</strong>: 「전자상거래법」·「통신비밀보호법」 등 관련 법령상 의무 준수</li>
+          <li><strong>고객 응대</strong>: 공지사항 전달, 문의 회신</li>
         </ul>
-      </li>
-      <li>
-        가족 공유 기록의 경우, 작성자(탈퇴자) 본인이 작성한 기록·사진은 탈퇴 시 함께 삭제됩니다.
-        다른 가족 구성원이 보유한 기록은 영향을 받지 않습니다.
-      </li>
-    </ol>
 
-    <h2>4. 만 14세 미만 아동의 개인정보</h2>
-    <p>
-      회사는 <strong>만 14세 미만 아동의 개인정보를 수집하지 않습니다.</strong> 본 서비스는 가입 시
-      이용자가 만 14세 이상임을 확인하며, 가입 후에도 만 14세 미만으로 확인되는 경우 해당 계정과
-      관련 정보를 즉시 파기합니다.
-    </p>
+        <h2 id="section-3">3. 개인정보의 보유 및 이용 기간</h2>
+        <ol>
+          <li>
+            이용자의 개인정보는 회원 탈퇴 또는 동의 철회 시 <strong>지체 없이 파기</strong>합니다.
+            앱 내 "마이 → 회원 탈퇴" 기능 사용 시 회원 정보·반려동물 정보·기록·사진·가족 멤버십 등이
+            즉시 삭제됩니다.
+          </li>
+          <li>
+            다만 다음의 경우 관련 법령에 따라 명시된 기간 동안 별도 보관합니다.
+            <ul>
+              <li>접속 로그(통신비밀보호법): 3개월</li>
+              <li>관련 법령에 따른 보존 의무가 있는 기록: 해당 법령에서 정한 기간</li>
+            </ul>
+          </li>
+          <li>
+            가족 공유 기록의 경우, 작성자(탈퇴자) 본인이 작성한 기록·사진은 탈퇴 시 함께 삭제됩니다.
+            다른 가족 구성원이 보유한 기록은 영향을 받지 않습니다.
+          </li>
+        </ol>
 
-    <h2>5. 개인정보의 제3자 제공</h2>
-    <p>
-      회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다. 다만 다음의 경우 예외로
-      합니다.
-    </p>
-    <ul>
-      <li>이용자가 사전에 동의한 경우</li>
-      <li>법령에 특별한 규정이 있거나 수사 목적으로 법령에 정해진 절차에 따라 수사기관의 요구가 있는 경우</li>
-    </ul>
+        <h2 id="section-4">4. 만 14세 미만 아동의 개인정보</h2>
+        <p>
+          회사는 <strong>만 14세 미만 아동의 개인정보를 수집하지 않습니다.</strong> 본 서비스는 가입 시
+          이용자가 만 14세 이상임을 확인하며, 가입 후에도 만 14세 미만으로 확인되는 경우 해당 계정과
+          관련 정보를 즉시 파기합니다.
+        </p>
 
-    <h2>6. 개인정보 처리 위탁 및 국외 이전</h2>
-    <p>회사는 서비스 운영을 위해 다음과 같이 개인정보 처리를 위탁하고 있습니다.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>수탁업체</th>
-          <th>위탁 업무</th>
-          <th>처리 위치</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Supabase Inc.</td>
-          <td>회원 인증, 데이터베이스 저장, 파일(사진) 호스팅, 서버리스 함수 실행</td>
-          <td>대한민국(서울 리전 ap-northeast-2) / 본사: 미국</td>
-        </tr>
-        <tr>
-          <td>Google LLC (Firebase)</td>
-          <td>Android 푸시 알림(FCM) 발송, 앱 크래시 보고(Crashlytics)</td>
-          <td>미국</td>
-        </tr>
-        <tr>
-          <td>Apple Inc.</td>
-          <td>iOS 푸시 알림(APNs) 발송, Apple 로그인 인증</td>
-          <td>미국</td>
-        </tr>
-        <tr>
-          <td>Cloudflare, Inc.</td>
-          <td>약관·정책 등 정적 페이지 호스팅</td>
-          <td>전 세계 CDN(개인정보 미저장)</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>
-      위 수탁업체 중 일부는 해외(미국)에 본사를 두고 있어 개인정보가 국외로 이전될 수 있습니다.
-      이전되는 정보의 항목·이전 목적·보유 기간은 본 처리방침에 명시된 바와 동일하며, 이전 시점은
-      서비스 이용 중 상시 발생합니다. 이전 방법은 네트워크를 통한 전송이며, 모든 통신 구간은
-      TLS 로 암호화됩니다.
-    </p>
+        <h2 id="section-5">5. 개인정보의 제3자 제공</h2>
+        <p>
+          회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다. 다만 다음의 경우 예외로
+          합니다.
+        </p>
+        <ul>
+          <li>이용자가 사전에 동의한 경우</li>
+          <li>법령에 특별한 규정이 있거나 수사 목적으로 법령에 정해진 절차에 따라 수사기관의 요구가 있는 경우</li>
+        </ul>
 
-    <h2>7. 이용자의 권리와 행사 방법</h2>
-    <p>이용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
-    <ul>
-      <li>개인정보의 열람·정정: 앱 내 "마이" 화면에서 직접 확인·수정</li>
-      <li>개인정보의 처리정지·삭제: 앱 내 "마이 → 회원 탈퇴" 기능 또는 이메일 문의</li>
-      <li>동의 철회: 앱 내 알림 설정 토글 또는 회원 탈퇴를 통해 가능</li>
-    </ul>
-    <p>
-      만 14세 미만 아동의 법정대리인이 그 자녀의 정보 처리에 관한 권리 행사를 원하는 경우, 아래
-      개인정보 보호책임자 이메일로 문의해 주시면 본인 확인 후 처리합니다.
-    </p>
+        <h2 id="section-6">6. 개인정보 처리 위탁 및 국외 이전</h2>
+        <p>회사는 서비스 운영을 위해 다음과 같이 개인정보 처리를 위탁하고 있습니다.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>수탁업체</th>
+                <th>위탁 업무</th>
+                <th>처리 위치</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Supabase Inc.</td>
+                <td>회원 인증, 데이터베이스 저장, 파일(사진) 호스팅, 서버리스 함수 실행</td>
+                <td>대한민국(서울 리전 ap-northeast-2) / 본사: 미국</td>
+              </tr>
+              <tr>
+                <td>Google LLC (Firebase)</td>
+                <td>Android 푸시 알림(FCM) 발송, 앱 크래시 보고(Crashlytics)</td>
+                <td>미국</td>
+              </tr>
+              <tr>
+                <td>Apple Inc.</td>
+                <td>iOS 푸시 알림(APNs) 발송, Apple 로그인 인증</td>
+                <td>미국</td>
+              </tr>
+              <tr>
+                <td>Cloudflare, Inc.</td>
+                <td>약관·정책 등 정적 페이지 호스팅</td>
+                <td>전 세계 CDN(개인정보 미저장)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          위 수탁업체 중 일부는 해외(미국)에 본사를 두고 있어 개인정보가 국외로 이전될 수 있습니다.
+          이전되는 정보의 항목·이전 목적·보유 기간은 본 처리방침에 명시된 바와 동일하며, 이전 시점은
+          서비스 이용 중 상시 발생합니다. 이전 방법은 네트워크를 통한 전송이며, 모든 통신 구간은
+          TLS 로 암호화됩니다.
+        </p>
 
-    <h2>8. 개인정보의 안전성 확보 조치</h2>
-    <ul>
-      <li><strong>전송 구간 암호화</strong>: 클라이언트와 서버 간 모든 통신은 TLS/HTTPS 로 암호화</li>
-      <li><strong>접근 통제</strong>: 데이터베이스에 Row Level Security(RLS) 를 적용하여 이용자가
-        본인 또는 같은 가족의 데이터에만 접근할 수 있도록 제한</li>
-      <li><strong>인증 정보의 위탁</strong>: 비밀번호는 회사가 직접 저장하지 않으며, 소셜 로그인
-        제공자(Apple, Google)의 인증 결과만 사용</li>
-      <li><strong>접근 기록 관리</strong>: 관리자 콘솔 접근 및 시스템 로그를 보관·점검</li>
-      <li><strong>최소 수집의 원칙</strong>: 서비스 제공에 반드시 필요한 정보만 수집</li>
-    </ul>
+        <h2 id="section-7">7. 이용자의 권리와 행사 방법</h2>
+        <p>이용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
+        <ul>
+          <li>개인정보의 열람·정정: 앱 내 "마이" 화면에서 직접 확인·수정</li>
+          <li>개인정보의 처리정지·삭제: 앱 내 "마이 → 회원 탈퇴" 기능 또는 이메일 문의</li>
+          <li>동의 철회: 앱 내 알림 설정 토글 또는 회원 탈퇴를 통해 가능</li>
+        </ul>
+        <p>
+          만 14세 미만 아동의 법정대리인이 그 자녀의 정보 처리에 관한 권리 행사를 원하는 경우, 아래
+          개인정보 보호책임자 이메일로 문의해 주시면 본인 확인 후 처리합니다.
+        </p>
 
-    <h2>9. 쿠키 등 자동 수집 도구 거부 방법</h2>
-    <p>
-      본 서비스는 웹 쿠키를 사용하지 않습니다. 다만 푸시 알림 토큰 등 자동 수집되는 정보의 수집을
-      원하지 않는 경우, OS 설정(설정 → 알림 → PopoLog) 에서 알림 권한을 해제하실 수 있습니다.
-      이 경우 푸시 알림 기능이 제한될 수 있습니다.
-    </p>
+        <h2 id="section-8">8. 개인정보의 안전성 확보 조치</h2>
+        <ul>
+          <li><strong>전송 구간 암호화</strong>: 클라이언트와 서버 간 모든 통신은 TLS/HTTPS 로 암호화</li>
+          <li><strong>접근 통제</strong>: 데이터베이스에 Row Level Security(RLS) 를 적용하여 이용자가
+            본인 또는 같은 가족의 데이터에만 접근할 수 있도록 제한</li>
+          <li><strong>인증 정보의 위탁</strong>: 비밀번호는 회사가 직접 저장하지 않으며, 소셜 로그인
+            제공자(Apple, Google)의 인증 결과만 사용</li>
+          <li><strong>접근 기록 관리</strong>: 관리자 콘솔 접근 및 시스템 로그를 보관·점검</li>
+          <li><strong>최소 수집의 원칙</strong>: 서비스 제공에 반드시 필요한 정보만 수집</li>
+        </ul>
 
-    <h2>10. 개인정보 보호책임자</h2>
-    <p>
-      회사는 이용자의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위해 아래와 같이
-      개인정보 보호책임자를 두고 있습니다.
-    </p>
-    <ul>
-      <li>책임자: 조준호</li>
-      <li>이메일: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-    </ul>
-    <p>
-      개인정보 침해로 인한 신고·상담이 필요한 경우 아래 기관에 도움을 요청할 수 있습니다.
-    </p>
-    <ul>
-      <li>개인정보 침해신고센터: privacy.kisa.or.kr (국번 없이 118)</li>
-      <li>개인정보 분쟁조정위원회: kopico.go.kr (1833-6972)</li>
-      <li>대검찰청 사이버범죄수사단: spo.go.kr (02-3480-3573)</li>
-      <li>경찰청 사이버수사국: ecrm.cyber.go.kr (국번 없이 182)</li>
-    </ul>
+        <h2 id="section-9">9. 쿠키 등 자동 수집 도구 거부 방법</h2>
+        <p>
+          본 서비스는 웹 쿠키를 사용하지 않습니다. 다만 푸시 알림 토큰 등 자동 수집되는 정보의 수집을
+          원하지 않는 경우, OS 설정(설정 → 알림 → PopoLog) 에서 알림 권한을 해제하실 수 있습니다.
+          이 경우 푸시 알림 기능이 제한될 수 있습니다.
+        </p>
 
-    <h2>11. 정책 변경에 관한 안내</h2>
-    <p>
-      본 개인정보처리방침은 법령·서비스의 변경에 따라 개정될 수 있으며, 변경 시 적용일 7일 전부터
-      앱 내 공지사항을 통해 사전 안내합니다. 이용자에게 불리한 변경의 경우 적용일 30일 전부터
-      공지하며, 앱 진입 시 변경된 방침에 대한 재동의 절차를 제공합니다.
-    </p>
+        <h2 id="section-10">10. 개인정보 보호책임자</h2>
+        <p>
+          회사는 이용자의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위해 아래와 같이
+          개인정보 보호책임자를 두고 있습니다.
+        </p>
+        <ul>
+          <li>책임자: 조준호</li>
+          <li>이메일: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
+        </ul>
+        <p>
+          개인정보 침해로 인한 신고·상담이 필요한 경우 아래 기관에 도움을 요청할 수 있습니다.
+        </p>
+        <ul>
+          <li>개인정보 침해신고센터: privacy.kisa.or.kr (국번 없이 118)</li>
+          <li>개인정보 분쟁조정위원회: kopico.go.kr (1833-6972)</li>
+          <li>대검찰청 사이버범죄수사단: spo.go.kr (02-3480-3573)</li>
+          <li>경찰청 사이버수사국: ecrm.cyber.go.kr (국번 없이 182)</li>
+        </ul>
 
-    <h2>12. 회사 정보</h2>
-    <ul>
-      <li>상호: 준호네소프트웨어</li>
-      <li>사업자등록번호: 717-20-02064</li>
-      <li>주소: 경상북도 경주시 동천로 30번길 8</li>
-      <li>고객 문의: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-    </ul>
+        <h2 id="section-11">11. 정책 변경에 관한 안내</h2>
+        <p>
+          본 개인정보처리방침은 법령·서비스의 변경에 따라 개정될 수 있으며, 변경 시 적용일 7일 전부터
+          앱 내 공지사항을 통해 사전 안내합니다. 이용자에게 불리한 변경의 경우 적용일 30일 전부터
+          공지하며, 앱 진입 시 변경된 방침에 대한 재동의 절차를 제공합니다.
+        </p>
+
+        <h2 id="section-12">12. 회사 정보</h2>
+        <ul>
+          <li>상호: 준호네소프트웨어</li>
+          <li>사업자등록번호: 717-20-02064</li>
+          <li>주소: 경상북도 경주시 동천로 30번길 8</li>
+          <li>고객 문의: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
+        </ul>
+      </section>
+    </article>
   </main>
-  <footer>
-    <a href="/privacy">개인정보처리방침</a>
-    <a href="/terms">서비스 이용약관</a>
-    <div style="margin-top: 8px;">© 준호네소프트웨어</div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links" aria-label="푸터 링크">
+        <a href="/privacy">개인정보처리방침</a>
+        <a href="/terms">서비스 이용약관</a>
+      </div>
+
+      <div>© <span id="currentYear">2026</span> 준호네소프트웨어</div>
+    </div>
   </footer>
+
+  <script>
+    const currentYearElement = document.getElementById("currentYear");
+    if (currentYearElement) {
+      currentYearElement.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>
