@@ -2,8 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
   <meta name="description" content="PopoLog 개인정보 처리방침. 수집하는 개인정보, 이용 목적, 보유 기간, 처리 위탁, 이용자 권리를 안내합니다." />
   <title>개인정보 처리방침 | PopoLog</title>
   <link rel="icon" type="image/webp" href="/assets/lg_popo_square.webp" />
@@ -25,8 +25,8 @@
       --max: 1120px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
 
     body {
       margin: 0;
@@ -505,19 +505,35 @@
       .policy-card h2 { font-size: 19px; line-height: 1.38; }
       .policy-card p, .policy-card li { font-size: 13.5px; line-height: 1.72; }
       .policy-card ul, .policy-card ol { padding-left: 18px; }
-      .table-scroll { margin: 12px 0; border-radius: 14px; -webkit-overflow-scrolling: touch; }
-      .table-scroll::before {
-        content: "좌우로 밀어서 표를 확인하세요";
-        display: block;
-        padding: 10px 12px;
-        color: var(--muted);
-        background: rgba(255, 248, 243, .88);
-        border-bottom: 1px solid rgba(138, 106, 88, .10);
-        font-size: 12px;
-        font-weight: 800;
+      .table-scroll { overflow-x: visible; margin: 12px 0; border: 0; border-radius: 0; background: transparent; }
+      table, thead, tbody, tr, th, td { display: block; width: 100%; }
+      table { min-width: 0; font-size: 13px; border-collapse: separate; }
+      thead { position: absolute; left: -9999px; top: -9999px; }
+      tr {
+        margin-bottom: 10px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(138, 106, 88, .05);
       }
-      table { min-width: 640px; font-size: 12.5px; }
-      th, td { padding: 12px; }
+      tr:last-child { margin-bottom: 0; }
+      td {
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(138, 106, 88, .14);
+        line-height: 1.7;
+      }
+      td:last-child { border-bottom: 0; padding-bottom: 0; }
+      td:first-child { padding-top: 0; }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 4px;
+        color: var(--coral-deep);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: .02em;
+      }
       .footer-inner { grid-template-columns: 1fr; gap: 22px; padding: 34px 0; }
       .footer-brand { font-size: 22px; }
       .copyright { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
@@ -528,7 +544,6 @@
       .hero-title { font-size: 32px; }
       .hero-desc, .policy-card p, .policy-card li { font-size: 13px; }
       .policy-card { padding: 18px; }
-      table { min-width: 600px; }
     }
   </style>
 </head>
@@ -623,39 +638,39 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>회원가입</td>
-                    <td>소셜 로그인 식별자(Apple ID, Google 계정 식별자), 이메일, 닉네임(소셜 로그인 시 제공된 이름), 프로필 이미지 URL(선택)</td>
-                    <td>가입 시</td>
+                    <td data-label="구분">회원가입</td>
+                    <td data-label="항목">소셜 로그인 식별자(Apple ID, Google 계정 식별자), 이메일, 닉네임(소셜 로그인 시 제공된 이름), 프로필 이미지 URL(선택)</td>
+                    <td data-label="수집 시점">가입 시</td>
                   </tr>
                   <tr>
-                    <td>약관 동의 기록</td>
-                    <td>이용약관·개인정보처리방침 동의 시각 및 버전, 만 14세 이상 확인 시각</td>
-                    <td>가입 시 및 약관 개정 시 재동의 시점</td>
+                    <td data-label="구분">약관 동의 기록</td>
+                    <td data-label="항목">이용약관·개인정보처리방침 동의 시각 및 버전, 만 14세 이상 확인 시각</td>
+                    <td data-label="수집 시점">가입 시 및 약관 개정 시 재동의 시점</td>
                   </tr>
                   <tr>
-                    <td>반려동물 정보</td>
-                    <td>반려동물의 이름, 종(개·고양이 등), 품종, 성별, 생일, 입양일, 소개글, 프로필 사진, 테마 색상</td>
-                    <td>이용자가 직접 입력 시</td>
+                    <td data-label="구분">반려동물 정보</td>
+                    <td data-label="항목">반려동물의 이름, 종(개·고양이 등), 품종, 성별, 생일, 입양일, 소개글, 프로필 사진, 테마 색상</td>
+                    <td data-label="수집 시점">이용자가 직접 입력 시</td>
                   </tr>
                   <tr>
-                    <td>일상·건강 기록</td>
-                    <td>식사·산책·배변·수면·약 복용·접종·병원 방문·미용 등 기록 내용, 기록에 첨부된 사진, 기록 날짜·시간, 약 복용 체크 기록</td>
-                    <td>이용자가 직접 입력 시</td>
+                    <td data-label="구분">일상·건강 기록</td>
+                    <td data-label="항목">식사·산책·배변·수면·약 복용·접종·병원 방문·미용 등 기록 내용, 기록에 첨부된 사진, 기록 날짜·시간, 약 복용 체크 기록</td>
+                    <td data-label="수집 시점">이용자가 직접 입력 시</td>
                   </tr>
                   <tr>
-                    <td>가족 공유</td>
-                    <td>가족 그룹 멤버십, 초대 코드, 가족 내 호칭, 다른 멤버의 기록에 단 댓글·좋아요</td>
-                    <td>가족 생성·초대 수락·상호작용 시</td>
+                    <td data-label="구분">가족 공유</td>
+                    <td data-label="항목">가족 그룹 멤버십, 초대 코드, 가족 내 호칭, 다른 멤버의 기록에 단 댓글·좋아요</td>
+                    <td data-label="수집 시점">가족 생성·초대 수락·상호작용 시</td>
                   </tr>
                   <tr>
-                    <td>알림 설정</td>
-                    <td>알림 수신 동의 여부, 기록 리마인더 토글</td>
-                    <td>가입 시(기본값) 및 사용자가 토글 변경 시</td>
+                    <td data-label="구분">알림 설정</td>
+                    <td data-label="항목">알림 수신 동의 여부, 기록 리마인더 토글</td>
+                    <td data-label="수집 시점">가입 시(기본값) 및 사용자가 토글 변경 시</td>
                   </tr>
                   <tr>
-                    <td>자동 수집</td>
-                    <td>푸시 알림 토큰(FCM/APNs), 기기 정보(OS 종류·버전, 앱 버전), 접속 로그(접속 시각, 오류 로그)</td>
-                    <td>앱 실행·푸시 권한 허용 시</td>
+                    <td data-label="구분">자동 수집</td>
+                    <td data-label="항목">푸시 알림 토큰(FCM/APNs), 기기 정보(OS 종류·버전, 앱 버전), 접속 로그(접속 시각, 오류 로그)</td>
+                    <td data-label="수집 시점">앱 실행·푸시 권한 허용 시</td>
                   </tr>
                 </tbody>
               </table>
@@ -746,24 +761,24 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Supabase Inc.</td>
-                    <td>회원 인증, 데이터베이스 저장, 파일(사진) 호스팅, 서버리스 함수 실행</td>
-                    <td>대한민국(서울 리전 ap-northeast-2) / 본사: 미국</td>
+                    <td data-label="수탁업체">Supabase Inc.</td>
+                    <td data-label="위탁 업무">회원 인증, 데이터베이스 저장, 파일(사진) 호스팅, 서버리스 함수 실행</td>
+                    <td data-label="처리 위치">대한민국(서울 리전 ap-northeast-2) / 본사: 미국</td>
                   </tr>
                   <tr>
-                    <td>Google LLC (Firebase)</td>
-                    <td>Android 푸시 알림(FCM) 발송, 앱 크래시 보고(Crashlytics)</td>
-                    <td>미국</td>
+                    <td data-label="수탁업체">Google LLC (Firebase)</td>
+                    <td data-label="위탁 업무">Android 푸시 알림(FCM) 발송, 앱 크래시 보고(Crashlytics)</td>
+                    <td data-label="처리 위치">미국</td>
                   </tr>
                   <tr>
-                    <td>Apple Inc.</td>
-                    <td>iOS 푸시 알림(APNs) 발송, Apple 로그인 인증</td>
-                    <td>미국</td>
+                    <td data-label="수탁업체">Apple Inc.</td>
+                    <td data-label="위탁 업무">iOS 푸시 알림(APNs) 발송, Apple 로그인 인증</td>
+                    <td data-label="처리 위치">미국</td>
                   </tr>
                   <tr>
-                    <td>Cloudflare, Inc.</td>
-                    <td>약관·정책 등 정적 페이지 호스팅</td>
-                    <td>전 세계 CDN(개인정보 미저장)</td>
+                    <td data-label="수탁업체">Cloudflare, Inc.</td>
+                    <td data-label="위탁 업무">약관·정책 등 정적 페이지 호스팅</td>
+                    <td data-label="처리 위치">전 세계 CDN(개인정보 미저장)</td>
                   </tr>
                 </tbody>
               </table>
