@@ -10,5 +10,9 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "routes": [
+    { "pattern": "popolog.co.kr", "custom_domain": true },
+    { "pattern": "www.popolog.co.kr", "custom_domain": true }
   ]
 }
