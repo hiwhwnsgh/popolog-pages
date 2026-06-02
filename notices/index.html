@@ -8,7 +8,14 @@
   <title>공지사항 | PopoLog</title>
   <link rel="icon" type="image/webp" href="../assets/lg_popo_square.webp" />
   <link rel="apple-touch-icon" href="../assets/lg_popo_square.webp" />
-  <link rel="stylesheet" href="../style.css?v=notices-20260603-help-polish" />
+  <link rel="stylesheet" href="../style.css?v=notices-20260603-embed" />
+  <script>
+    // 인앱 WebView 가 ?embed=app 으로 열면 사이트 크롬을 걷어내는 임베드 모드(style.css).
+    // 첫 페인트 전에 동기 실행되어 깜빡임(FOUC) 없이 클래스를 건다.
+    if (new URLSearchParams(location.search).get("embed") === "app") {
+      document.documentElement.classList.add("embed-app");
+    }
+  </script>
 </head>
 <body class="notices-page">
   <a class="skip-link" href="#main">본문 바로가기</a>

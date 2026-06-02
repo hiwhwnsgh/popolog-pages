@@ -1148,6 +1148,34 @@ button:focus-visible {
   background: linear-gradient(180deg, #fffaf7 0%, #fffdfb 56%, #fff8f5 100%);
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   인앱 WebView 임베드 모드 (?embed=app)
+   앱이 공지 목록을 인앱 WebView 로 띄울 때 진입한다. 네이티브 화면이 이미 상단바와
+   배경을 그려주므로 사이트 헤더·히어로 배너·검색/필터·페이지네이션·문의 섹션·푸터를
+   전부 걷어내고 목록만 남긴다. 페이지가 가벼워져 로딩이 빨라지고, iOS WebView 가
+   디코드에 실패하던 히어로 배너 WEBP 도 더 이상 내려받지 않는다.
+   클래스 토글은 index.html <head> 의 인라인 스크립트가 첫 페인트 전에 처리해 FOUC 방지.
+   ────────────────────────────────────────────────────────────────────────── */
+html.embed-app .skip-link,
+html.embed-app .site-header,
+html.embed-app .notices-hero,
+html.embed-app .notice-tools,
+html.embed-app .notice-pagination,
+html.embed-app .notice-help,
+html.embed-app .site-footer {
+  display: none !important;
+}
+
+html.embed-app,
+html.embed-app body {
+  background: #fff;
+}
+
+html.embed-app .notices-content {
+  width: min(100% - 32px, 720px);
+  padding: 12px 0 24px;
+}
+
 .notices-page .header-inner,
 .notices-page .footer-inner {
   width: min(100% - 48px, var(--container-wide));
