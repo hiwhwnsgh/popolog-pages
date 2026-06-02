@@ -6,25 +6,28 @@
   <meta name="color-scheme" content="light" />
   <meta name="description" content="PopoLog 서비스 이용약관. 회원가입, 서비스 제공, 이용자 의무, 책임 제한 등 사용에 관한 권리·의무를 안내합니다." />
   <title>서비스 이용약관 | PopoLog</title>
-  <link rel="icon" type="image/webp" href="/assets/lg_popo_square.webp" />
-  <link rel="apple-touch-icon" href="/assets/lg_popo_square.webp" />
+  <link rel="icon" type="image/webp" href="assets/lg_popo_square.webp" />
+  <link rel="apple-touch-icon" href="assets/lg_popo_square.webp" />
   <style>
     :root {
       --coral: #f58c7c;
-      --coral-deep: #ef6f62;
+      --coral-deep: #f36f61;
+      --coral-soft: #fff1e9;
       --cream: #fff8f3;
-      --cream-2: #fff3eb;
+      --beige: #f2e4d8;
       --pink: #f8d9d7;
       --brown: #8a6a58;
       --ink: #2f241e;
       --muted: #6f5c53;
       --line: rgba(138, 106, 88, .15);
+      --soft-line: rgba(245, 140, 124, .22);
+      --card: rgba(255, 255, 255, .88);
       --shadow: 0 24px 70px rgba(138, 106, 88, .10);
       --max: 1120px;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -61,13 +64,14 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      height: 56px;
       border-bottom: 1px solid rgba(138, 106, 88, .08);
-      background: rgba(255, 250, 247, .88);
+      background: rgba(255, 250, 247, .86);
       backdrop-filter: blur(18px);
     }
 
     .header-inner {
-      min-height: 64px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -99,60 +103,90 @@
       overflow: hidden;
       border-bottom: 1px solid rgba(245, 140, 124, .15);
       background:
-        radial-gradient(circle at 76% 42%, rgba(248, 217, 215, .44), transparent 38%),
-        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, .85), transparent 32%),
-        linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,248,243,.92));
+        radial-gradient(circle at 76% 18%, rgba(255, 222, 204, .58) 0 24%, transparent 48%),
+        radial-gradient(ellipse at 20% 46%, rgba(255, 255, 255, .95) 0 32%, rgba(255, 250, 247, .62) 54%, transparent 72%),
+        linear-gradient(90deg, #fff7f1 0%, #fff4ec 48%, #fff1e7 100%);
+      isolation: isolate;
     }
 
+    .hero::before,
     .hero::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 90px;
-      background: linear-gradient(180deg, transparent, rgba(255,248,243,.92));
+      z-index: 1;
       pointer-events: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: .54;
+    }
+
+    .hero::before {
+      left: max(24px, calc((100vw - var(--max)) / 2 + 260px));
+      top: 48px;
+      width: 44px;
+      height: 50px;
+      background-image: url("assets/ic_drawing_heart2.webp");
+      transform: rotate(-10deg);
+    }
+
+    .hero::after {
+      right: max(28px, calc((100vw - var(--max)) / 2 + 90px));
+      top: 38px;
+      width: 30px;
+      height: 34px;
+      background-image: url("assets/ic_drawing_heart3.webp");
+      transform: rotate(12deg);
     }
 
     .hero-inner {
+      position: relative;
       min-height: 320px;
       display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
-      gap: 52px;
+      grid-template-columns: 1fr 560px;
+      gap: 40px;
       align-items: center;
-      padding: 58px 0 44px;
+      padding: 54px 0 44px;
     }
 
-    .hero-kicker {
-      margin: 0 0 18px;
-      color: var(--coral-deep);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: -.02em;
+    .hero-inner::before {
+      content: "";
+      position: absolute;
+      right: clamp(300px, 32vw, 430px);
+      bottom: 56px;
+      z-index: 1;
+      width: 32px;
+      height: 36px;
+      background: url("assets/ic_drawing_heart5.webp") center / contain no-repeat;
+      opacity: .54;
+      pointer-events: none;
+      transform: rotate(8deg);
     }
+
+    .hero-copy { position: relative; z-index: 3; }
 
     .hero-title {
       margin: 0;
       color: var(--ink);
-      font-size: clamp(42px, 5.8vw, 66px);
+      font-size: clamp(42px, 5.6vw, 64px);
       line-height: 1.08;
-      letter-spacing: -.065em;
+      letter-spacing: -.06em;
     }
 
     .hero-desc {
-      max-width: 660px;
+      max-width: 590px;
       margin: 22px 0 0;
       color: var(--muted);
       font-size: 17px;
       line-height: 1.85;
+      letter-spacing: -.02em;
     }
 
     .meta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     .meta span {
@@ -162,71 +196,101 @@
       min-height: 40px;
       padding: 0 16px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 999px;
       color: #5e4a40;
       background: rgba(255, 255, 255, .78);
       font-size: 13px;
       font-weight: 700;
     }
 
+    .meta img {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      margin-right: 4px;
+      vertical-align: -4px;
+    }
+
     .hero-visual {
       position: relative;
+      z-index: 2;
+      align-self: stretch;
       display: flex;
+      align-items: end;
       justify-content: center;
-      align-items: center;
-      min-height: 300px;
+      align-self: center;
+      min-height: 360px;
     }
 
     .hero-visual::before {
       content: "";
       position: absolute;
-      inset: 8% 0 2% 6%;
-      border-radius: 52% 48% 42% 58% / 46% 50% 50% 54%;
-      background: radial-gradient(circle at 45% 45%, rgba(248, 217, 215, .58), rgba(255, 248, 243, .2) 62%, transparent 72%);
-      filter: blur(.2px);
-      z-index: 0;
+      left: 50%;
+      top: 54%;
+      z-index: -1;
+      width: min(620px, 116%);
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 46%, rgba(255, 214, 196, .55) 0 44%, transparent 74%);
+      filter: blur(30px);
+      transform: translate(-50%, -50%);
     }
 
     .hero-visual img {
-      position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 560px;
-      height: auto;
+      max-width: 580px;
+      aspect-ratio: 16 / 11;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: drop-shadow(0 26px 54px rgba(138,106,88,.10));
+      -webkit-mask-image: radial-gradient(ellipse 68% 70% at 50% 52%, #000 22%, rgba(0,0,0,.5) 52%, transparent 78%);
+      mask-image: radial-gradient(ellipse 68% 70% at 50% 52%, #000 22%, rgba(0,0,0,.5) 52%, transparent 78%);
     }
 
     .important {
-      margin: 28px auto 24px;
+      margin: 28px auto 20px;
       display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 22px;
+      grid-template-columns: 72px 1fr;
+      gap: 20px;
       align-items: center;
-      padding: 26px;
-      border: 1px solid rgba(245, 140, 124, .28);
+      padding: 24px;
+      border: 1px solid rgba(245, 140, 124, .27);
       border-radius: 18px;
-      background: rgba(255, 255, 255, .72);
+      background:
+        radial-gradient(circle at 92% 20%, rgba(255, 214, 198, .34) 0 16%, transparent 34%),
+        rgba(255, 255, 255, .78);
       box-shadow: 0 18px 48px rgba(138, 106, 88, .06);
     }
 
-    .important img { width: 72px; height: 72px; }
-    .important h2 { margin: 0 0 10px; color: var(--ink); font-size: 20px; }
-    .important p { margin: 0; color: #55433b; font-size: 14px; line-height: 1.8; }
+    .important img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 8px 14px rgba(168, 84, 64, .13));
+    }
+
+    .important h2 {
+      margin: 0 0 8px;
+      color: var(--coral-deep);
+      font-size: 20px;
+      letter-spacing: -.03em;
+    }
+
+    .important p { margin: 0; color: #55433b; font-size: 14px; line-height: 1.7; }
 
     .content-layout {
       display: grid;
       grid-template-columns: 250px 1fr;
       gap: 22px;
       align-items: start;
-      padding: 0 0 76px;
+      padding: 0 0 64px;
     }
 
     .toc {
       position: sticky;
-      top: 88px;
-      padding: 24px 18px;
+      top: 78px;
+      padding: 22px 14px;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: rgba(255,255,255,.78);
@@ -234,42 +298,63 @@
       backdrop-filter: blur(16px);
     }
 
-    .toc h2 { margin: 0 8px 18px; font-size: 17px; }
-    .toc ol { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .toc h2 { margin: 0 8px 14px; font-size: 16px; letter-spacing: -.02em; }
+    .toc ol {
+      display: grid;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: item;
+    }
+    .toc li { counter-increment: item; }
     .toc a {
-      display: flex;
+      display: grid;
+      grid-template-columns: 34px 1fr;
       align-items: center;
-      gap: 9px;
-      min-height: 38px;
+      min-height: 42px;
       padding: 0 10px;
-      border-radius: 12px;
+      border-radius: 14px;
       color: var(--muted);
       font-size: 13px;
+      font-weight: 700;
+    }
+    .toc a::before {
+      content: counter(item, decimal-leading-zero);
+      color: var(--brown);
+      font-size: 11px;
       font-weight: 800;
     }
-    .toc a::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--coral); flex: 0 0 auto; }
     .toc a:hover, .toc a:focus { color: var(--coral-deep); background: rgba(245, 140, 124, .10); }
 
     .toc-help {
-      margin-top: 22px;
+      margin: 22px 8px 0;
       padding: 20px 16px;
-      border: 1px solid rgba(245, 140, 124, .22);
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fffaf7, #fff);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 213, 196, .32) 0 18%, transparent 40%),
+        linear-gradient(180deg, #fffaf7, #fff);
       text-align: center;
     }
-    .toc-help img { width: 44px; height: 44px; margin: 0 auto 12px; }
     .toc-help strong { display: block; margin-bottom: 8px; font-size: 14px; }
     .toc-help p { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-    .toc-help a { color: var(--coral-deep); font-size: 13px; font-weight: 900; }
+    .toc-help a {
+      display: inline;
+      color: var(--coral-deep);
+      font-size: 13px;
+      font-weight: 900;
+      padding: 0;
+      min-height: auto;
+    }
+    .toc-help a::before { content: none; }
 
     .terms-list { display: grid; gap: 10px; }
 
     .terms-card {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 18px;
-      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      padding: 26px 28px;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: rgba(255,255,255,.84);
@@ -277,7 +362,18 @@
       scroll-margin-top: 94px;
     }
 
-    .terms-icon img { width: 56px; height: 56px; }
+    .terms-card::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 18px;
+      height: 20px;
+      background: url("assets/ic_drawing_heart3.webp") center / contain no-repeat;
+      opacity: .12;
+      pointer-events: none;
+    }
+
     .terms-card h2 {
       margin: 0 0 10px;
       color: #463229;
@@ -301,7 +397,9 @@
 
     .site-footer {
       border-top: 1px solid var(--line);
-      background: rgba(255,255,255,.82);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 213, 196, .32) 0 16%, transparent 34%),
+        rgba(255, 250, 247, .9);
     }
 
     .footer-inner {
@@ -337,52 +435,74 @@
 
     @media (max-width: 1024px) {
       .container { width: min(100% - 40px, var(--max)); }
-      .hero-inner { grid-template-columns: 1fr 360px; gap: 32px; }
-      .hero-visual img { width: min(100%, 460px); }
+      .hero-inner { grid-template-columns: 1fr 400px; gap: 32px; }
+      .hero-visual img { width: 400px; height: auto; }
       .content-layout { grid-template-columns: 220px 1fr; gap: 18px; }
+      .toc a { font-size: 12.5px; }
       .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
     }
 
     @media (max-width: 860px) {
       .container { width: min(100% - 32px, var(--max)); }
+      .site-header { height: auto; }
+      .header-inner { height: 64px; }
       .brand-logo { width: 36px; height: 36px; }
       .hero-inner { grid-template-columns: 1fr; gap: 18px; padding: 42px 0 28px; }
-      .hero-visual { display: flex; justify-content: center; min-height: 260px; margin-top: 4px; }
-      .hero-visual::before { inset: 4% 3% 0 3%; }
-      .hero-visual img { width: min(100%, 520px); }
+      .hero::before { left: 68%; top: 128px; width: 34px; height: 38px; opacity: .42; }
+      .hero::after,
+      .hero-inner::before { display: none; }
+      .hero-copy { max-width: 100%; }
+      .hero-title { font-size: clamp(36px, 8vw, 48px); line-height: 1.12; }
+      .hero-desc { max-width: 100%; margin-top: 16px; font-size: 15.5px; line-height: 1.75; }
       .meta { margin-top: 18px; }
       .meta span { min-height: 38px; font-size: 12.5px; }
-      .important { grid-template-columns: 72px 1fr; margin-top: 18px; }
+      .hero-visual { min-height: 220px; justify-content: center; }
+      .hero-visual::before { width: min(440px, 104%); height: 220px; }
+      .hero-visual img { width: min(100%, 420px); height: auto; }
+      .important { grid-template-columns: 56px 1fr; gap: 14px; margin-top: 18px; padding: 20px; border-radius: 16px; }
+      .important img { width: 56px; height: 56px; }
+      .important h2 { font-size: 18px; }
+      .important p { font-size: 13.5px; }
       .content-layout { grid-template-columns: 1fr; padding-bottom: 56px; }
-      .toc { position: static; }
-      .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; }
-      .footer-inner { grid-template-columns: repeat(2, 1fr); }
+      .toc { position: static; padding: 18px; }
+      .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; display: grid; }
+      .toc a { min-height: 40px; font-size: 12.5px; background: rgba(255, 248, 243, .62); }
+      .toc-help { margin: 16px 0 0; }
+      .footer-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     }
 
     @media (max-width: 640px) {
+      body {
+        background:
+          radial-gradient(circle at 20% -4%, rgba(248, 217, 215, .68), transparent 40%),
+          linear-gradient(180deg, #fffaf7 0%, #fff8f3 46%, #ffffff 100%);
+      }
       .container { width: min(100% - 28px, var(--max)); }
-      .header-inner { min-height: 58px; }
+      .header-inner { height: 58px; }
       .brand-logo { width: 34px; height: 34px; }
       .nav-list { gap: 16px; font-size: 12px; }
-      .hero-inner { padding: 30px 0 22px; }
-      .hero-kicker { font-size: 13px; }
+      .hero-inner { padding: 30px 0 20px; }
       .hero-title { font-size: 36px; letter-spacing: -.055em; }
       .hero-desc { font-size: 14.5px; line-height: 1.72; }
-      .hero-visual { min-height: 220px; }
-      .hero-visual img { max-width: 100%; }
-      .hero::after { height: 42px; }
       .meta { display: grid; grid-template-columns: 1fr; gap: 8px; }
       .meta span { justify-content: center; width: 100%; border-radius: 14px; }
+      .hero-visual { min-height: 158px; }
+      .hero-visual::before { width: min(380px, 102%); height: 190px; }
+      .hero-visual img { max-width: 360px; }
       .important { grid-template-columns: 1fr; gap: 12px; padding: 18px; border-radius: 20px; }
-      .important img { width: 60px; height: 60px; }
+      .important img { width: 52px; height: 52px; }
+      .important h2 { margin-bottom: 6px; font-size: 17px; }
+      .important p { font-size: 13px; line-height: 1.68; }
       .toc { border-radius: 20px; }
       .toc ol { grid-template-columns: 1fr; }
+      .toc a { grid-template-columns: 32px 1fr; min-height: 42px; border-radius: 12px; }
       .terms-list { gap: 12px; }
-      .terms-card { grid-template-columns: 1fr; gap: 14px; padding: 20px; border-radius: 20px; scroll-margin-top: 70px; }
-      .terms-icon img { width: 52px; height: 52px; }
+      .terms-card { padding: 20px; border-radius: 20px; scroll-margin-top: 70px; }
+      .terms-card::after { right: 16px; top: 16px; opacity: .1; }
       .terms-card h2 { font-size: 19px; }
       .terms-card p, .terms-card li { font-size: 13.5px; line-height: 1.72; }
       .footer-inner { grid-template-columns: 1fr; gap: 22px; padding: 34px 0; }
+      .footer-brand { font-size: 22px; }
       .copyright { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
     }
 
@@ -405,6 +525,7 @@
       <nav aria-label="주요 메뉴">
         <ul class="nav-list">
           <li><a href="/">홈</a></li>
+          <li><a href="/notices/">공지사항</a></li>
           <li><a href="/privacy">개인정보처리방침</a></li>
           <li><a href="/terms">이용약관</a></li>
         </ul>
@@ -415,15 +536,14 @@
   <main id="main-content">
     <section class="hero">
       <div class="container hero-inner">
-        <div>
-          <p class="hero-kicker">PopoLog과 함께 안전하고 신뢰할 수 있는 서비스 이용을 위해</p>
+        <div class="hero-copy">
           <h1 id="terms-title" class="hero-title">서비스 이용약관</h1>
           <p class="hero-desc">
-            본 약관은 PopoLog이 제공하는 모든 서비스의 이용과 관련하여 회사와 회원 간의
-            권리·의무 및 책임 사항을 규정합니다.
+            PopoLog 서비스 이용에 필요한 권리와 의무를 이해하기 쉽도록 정리했습니다.
+            현재 서비스는 무료로 제공됩니다.
           </p>
           <div class="meta" aria-label="약관 정보">
-            <span><img src="assets/icon-calendar.svg" alt="" width="16" height="16" style="display:inline-block;vertical-align:-3px;margin-right:6px;" />최종 개정일&nbsp; 2026. 05. 25.</span>
+            <span>최종 개정일&nbsp; 2026. 05. 25.</span>
             <span>시행일&nbsp; 2026. 05. 28.</span>
           </div>
         </div>
@@ -434,13 +554,12 @@
     </section>
 
     <section class="container important" aria-labelledby="notice-title">
-      <img src="assets/important-terms-icon.svg" alt="" aria-hidden="true" />
+      <img src="assets/ic_bell.webp" alt="" aria-hidden="true" />
       <div>
         <h2 id="notice-title">중요 안내</h2>
         <p>
-          본 약관은 정식 출시일에 맞춰 시행됩니다. 회원 가입 또는 서비스 이용 시 본 약관에
-          동의한 것으로 간주되며, 약관의 내용은 법령·서비스 변경에 따라 개정될 수 있습니다.
-          변경 시 앱 내 공지를 통해 사전 안내드립니다.
+          본 약관은 회원 가입 또는 서비스 이용 시 적용됩니다. 약관의 내용은 법령·서비스 변경에 따라
+          개정될 수 있으며, 중요한 변경은 앱 내 공지사항 등으로 사전에 안내드립니다.
         </p>
       </div>
     </section>
@@ -453,19 +572,15 @@
           <li><a href="#article-2">제2조 정의</a></li>
           <li><a href="#article-3">제3조 약관의 게시 및 변경</a></li>
           <li><a href="#article-4">제4조 회원가입 및 계정</a></li>
-          <li><a href="#article-5">제5조 서비스의 제공</a></li>
-          <li><a href="#article-6">제6조 서비스 이용료 및 환불</a></li>
-          <li><a href="#article-7">제7조 서비스의 변경 및 중단</a></li>
-          <li><a href="#article-8">제8조 이용자의 의무</a></li>
-          <li><a href="#article-9">제9조 콘텐츠의 권리</a></li>
-          <li><a href="#article-10">제10조 개인정보의 보호</a></li>
-          <li><a href="#article-11">제11조 회사의 책임 제한</a></li>
-          <li><a href="#article-12">제12조 계정 해지 및 이용 제한</a></li>
-          <li><a href="#article-13">제13조 준거법 및 분쟁 해결</a></li>
-          <li><a href="#article-14">제14조 회사 정보</a></li>
+          <li><a href="#article-5">제5조 서비스의 제공 및 변경</a></li>
+          <li><a href="#article-6">제6조 이용자의 의무</a></li>
+          <li><a href="#article-7">제7조 콘텐츠의 권리</a></li>
+          <li><a href="#article-8">제8조 개인정보의 보호</a></li>
+          <li><a href="#article-9">제9조 책임 제한</a></li>
+          <li><a href="#article-10">제10조 이용 제한 및 해지</a></li>
+          <li><a href="#article-11">제11조 준거법 및 문의</a></li>
         </ol>
         <div class="toc-help">
-          <img src="assets/terms-help-icon.svg" alt="" aria-hidden="true" />
           <strong>궁금한 점이 있으신가요?</strong>
           <p>고객 문의는 아래 이메일로 연락해 주세요.</p>
           <a href="mailto:hiwhwnsgh@gmail.com">고객 문의 →</a>
@@ -474,7 +589,6 @@
 
       <article class="terms-list" aria-labelledby="terms-title">
         <section id="article-1" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-01-target.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>제1조 (목적)</h2>
             <p>
@@ -485,7 +599,6 @@
         </section>
 
         <section id="article-2" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-02-book.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>제2조 (정의)</h2>
             <ul>
@@ -499,7 +612,6 @@
         </section>
 
         <section id="article-3" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-03-doc.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>제3조 (약관의 게시 및 변경)</h2>
             <ol>
@@ -512,7 +624,6 @@
         </section>
 
         <section id="article-4" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-05-user.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>제4조 (회원가입 및 계정)</h2>
             <ol>
@@ -525,9 +636,8 @@
         </section>
 
         <section id="article-5" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-04-cloud.svg" alt="" aria-hidden="true" /></div>
           <div>
-            <h2>제5조 (서비스의 제공)</h2>
+            <h2>제5조 (서비스의 제공 및 변경)</h2>
             <p>회사가 제공하는 서비스는 다음과 같습니다.</p>
             <ul>
               <li>반려동물 프로필 등록 및 일상·건강 기록(식사, 산책, 배변, 수면, 약 복용, 접종, 병원 방문 등)</li>
@@ -536,36 +646,20 @@
               <li>다른 가족 구성원의 활동(기록 추가·완료, 댓글, 좋아요 등) 푸시 알림</li>
               <li>공지사항, 도움말 및 고객 문의 채널</li>
             </ul>
-          </div>
-        </section>
-
-        <section id="article-6" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-06-heart.svg" alt="" aria-hidden="true" /></div>
-          <div>
-            <h2>제6조 (서비스 이용료 및 환불)</h2>
             <p>
-              서비스의 모든 기능은 현재 무료로 제공됩니다. 향후 유료 기능이 도입되는 경우, 도입 전
-              본 약관 개정 및 앱 내 공지를 통해 이용료·결제 방법·환불 정책을 별도로 안내합니다.
-              별도 안내 이전에는 유료 기능이 존재하지 않으므로 환불 대상이 되는 결제도 발생하지 않습니다.
+              서비스는 현재 무료로 제공됩니다. 향후 유료 기능이 도입되는 경우 이용료, 결제 방법,
+              환불 기준을 사전에 안내하고 필요한 동의 절차를 진행합니다.
+            </p>
+            <p>
+              회사는 운영상·기술상 필요한 경우 서비스의 전부 또는 일부를 변경하거나 일시 중단할 수 있으며,
+              이용자에게 중요한 영향을 주는 변경은 앱 내 공지사항으로 안내합니다.
             </p>
           </div>
         </section>
 
-        <section id="article-7" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-10-alert.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-6" class="terms-card">
           <div>
-            <h2>제7조 (서비스의 변경 및 중단)</h2>
-            <ol>
-              <li>회사는 운영상·기술상 필요한 경우 서비스의 전부 또는 일부를 변경하거나 중단할 수 있으며, 이 경우 사전에 앱 내 공지를 통해 안내합니다.</li>
-              <li>천재지변, 통신 장애, 외부 서비스(Supabase, Apple Push, Google Firebase 등) 장애 등 회사가 합리적으로 통제할 수 없는 사유로 일시적으로 서비스가 중단될 수 있으며, 이 경우 사전 공지가 어려울 수 있습니다.</li>
-            </ol>
-          </div>
-        </section>
-
-        <section id="article-8" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-07-shield.svg" alt="" aria-hidden="true" /></div>
-          <div>
-            <h2>제8조 (이용자의 의무)</h2>
+            <h2>제6조 (이용자의 의무)</h2>
             <ul>
               <li>타인의 권리(저작권, 초상권, 개인정보, 사생활 등)를 침해하지 않습니다.</li>
               <li>음란·폭력·차별·범죄·동물학대 관련 콘텐츠를 등록하지 않습니다.</li>
@@ -575,22 +669,20 @@
           </div>
         </section>
 
-        <section id="article-9" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-08-lock.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-7" class="terms-card">
           <div>
-            <h2>제9조 (콘텐츠의 권리)</h2>
+            <h2>제7조 (콘텐츠의 권리)</h2>
             <ol>
               <li>이용자가 서비스에 등록한 콘텐츠의 저작권은 이용자에게 있습니다.</li>
-              <li>회사는 서비스 운영·개선·홍보 목적의 범위 내에서 해당 콘텐츠를 사용할 수 있습니다(앱 사용 사례 소개 등). 단, 이용자가 식별될 수 있는 형태로 사용하는 경우 별도 동의를 받습니다.</li>
+              <li>회사는 서비스 제공·운영·개선에 필요한 범위에서 이용자의 콘텐츠를 저장, 표시, 전송할 수 있습니다.</li>
               <li>회사는 콘텐츠가 본 약관·법령에 위배되거나 타인의 권리를 침해하는 것으로 판단되는 경우 사전 통지 후 임시 비공개 또는 삭제할 수 있습니다.</li>
             </ol>
           </div>
         </section>
 
-        <section id="article-10" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-07-shield.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-8" class="terms-card">
           <div>
-            <h2>제10조 (개인정보의 보호)</h2>
+            <h2>제8조 (개인정보의 보호)</h2>
             <p>
               회사는 이용자의 개인정보를 「개인정보 보호법」 등 관련 법령에 따라 보호하며, 이에 관한 자세한
               사항은 별도의 <a href="/privacy">개인정보처리방침</a>에서 정합니다.
@@ -598,10 +690,9 @@
           </div>
         </section>
 
-        <section id="article-11" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-10-alert.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-9" class="terms-card">
           <div>
-            <h2>제11조 (회사의 책임 제한)</h2>
+            <h2>제9조 (책임 제한)</h2>
             <ol>
               <li>천재지변, 통신 장애, 이용자 단말 환경 등 회사가 합리적으로 통제할 수 없는 사유로 인한 손해에 대해서는 회사가 책임지지 않습니다.</li>
               <li>회사는 이용자의 콘텐츠 자체의 정확성·신뢰성에 대해 보증하지 않으며, 이용자가 콘텐츠에 의존하여 행한 의료·수의학적 판단으로 인한 결과에 대해 책임지지 않습니다. 반려동물의 건강 문제는 전문 수의사와 상담하시기 바랍니다.</li>
@@ -610,10 +701,9 @@
           </div>
         </section>
 
-        <section id="article-12" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-09-exit.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-10" class="terms-card">
           <div>
-            <h2>제12조 (계정 해지 및 이용 제한)</h2>
+            <h2>제10조 (이용 제한 및 해지)</h2>
             <p>
               이용자가 본 약관 또는 관련 법령을 위반한 경우 회사는 사전 통지 후 계정 이용을 제한하거나
               이용 계약을 해지할 수 있습니다. 위반 정도가 중대하거나 긴급한 경우 즉시 제한 후 사후
@@ -622,28 +712,15 @@
           </div>
         </section>
 
-        <section id="article-13" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-03-doc.svg" alt="" aria-hidden="true" /></div>
+        <section id="article-11" class="terms-card">
           <div>
-            <h2>제13조 (준거법 및 분쟁의 해결)</h2>
+            <h2>제11조 (준거법 및 문의)</h2>
             <ol>
               <li>본 약관은 대한민국 법령에 따라 해석됩니다.</li>
               <li>서비스 이용과 관련하여 회사와 이용자 사이에 분쟁이 발생한 경우, 양 당사자는 신의 성실의 원칙에 따라 우선 협의로 해결합니다.</li>
               <li>협의가 이루어지지 않는 경우, 「민사소송법」 상의 관할 법원에 소를 제기할 수 있습니다.</li>
             </ol>
-          </div>
-        </section>
-
-        <section id="article-14" class="terms-card">
-          <div class="terms-icon"><img src="assets/terms-icon-02-book.svg" alt="" aria-hidden="true" /></div>
-          <div>
-            <h2>제14조 (회사 정보)</h2>
-            <ul>
-              <li>상호: 준호네소프트웨어</li>
-              <li>사업자등록번호: 717-20-02064</li>
-              <li>주소: 경상북도 경주시 동천로 30번길 8</li>
-              <li>고객 문의: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-            </ul>
+            <p>고객 문의: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></p>
             <p style="margin-top:14px; padding-top:14px; border-top:1px dashed var(--line); color: var(--muted); font-size: 13px;">
               <strong style="color:var(--ink);">부칙</strong> · 본 약관은 위 시행일부터 적용됩니다.
             </p>
@@ -663,6 +740,7 @@
       <div>
         <h3>정책</h3>
         <ul>
+          <li><a href="/notices/">공지사항</a></li>
           <li><a href="/privacy">개인정보 처리방침</a></li>
           <li><a href="/terms">서비스 이용약관</a></li>
         </ul>

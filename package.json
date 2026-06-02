@@ -1,0 +1,12 @@
+{
+  "name": "popolog-pages",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PopoLog 약관·정책·공지 정적 페이지 (Cloudflare 호스팅)",
+  "scripts": {
+    "build": "node --env-file-if-exists=.dev.vars scripts/build-notices.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "python3 -m http.server 8000"
+  }
+}

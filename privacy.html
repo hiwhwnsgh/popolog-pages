@@ -6,12 +6,13 @@
   <meta name="color-scheme" content="light" />
   <meta name="description" content="PopoLog 개인정보 처리방침. 수집하는 개인정보, 이용 목적, 보유 기간, 처리 위탁, 이용자 권리를 안내합니다." />
   <title>개인정보 처리방침 | PopoLog</title>
-  <link rel="icon" type="image/webp" href="/assets/lg_popo_square.webp" />
-  <link rel="apple-touch-icon" href="/assets/lg_popo_square.webp" />
+  <link rel="icon" type="image/webp" href="assets/lg_popo_square.webp" />
+  <link rel="apple-touch-icon" href="assets/lg_popo_square.webp" />
   <style>
     :root {
       --coral: #f58c7c;
       --coral-deep: #f36f61;
+      --coral-soft: #fff1e9;
       --cream: #fff8f3;
       --beige: #f2e4d8;
       --pink: #f8d9d7;
@@ -104,19 +105,64 @@
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid rgba(245, 140, 124, .15);
-      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,248,243,.86));
+      background:
+        radial-gradient(circle at 76% 18%, rgba(255, 222, 204, .58) 0 24%, transparent 48%),
+        radial-gradient(ellipse at 20% 46%, rgba(255, 255, 255, .95) 0 32%, rgba(255, 250, 247, .62) 54%, transparent 72%),
+        linear-gradient(90deg, #fff7f1 0%, #fff4ec 48%, #fff1e7 100%);
+      isolation: isolate;
+    }
+
+    .hero::before,
+    .hero::after,
+    .hero-inner::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: .54;
+    }
+
+    .hero::before {
+      left: max(24px, calc((100vw - var(--max)) / 2 + 260px));
+      top: 48px;
+      width: 44px;
+      height: 50px;
+      background-image: url("assets/ic_drawing_heart2.webp");
+      transform: rotate(-10deg);
+    }
+
+    .hero::after {
+      right: max(28px, calc((100vw - var(--max)) / 2 + 90px));
+      top: 38px;
+      width: 30px;
+      height: 34px;
+      background-image: url("assets/ic_drawing_heart3.webp");
+      transform: rotate(12deg);
     }
 
     .hero-inner {
+      position: relative;
       min-height: 320px;
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 56px;
+      grid-template-columns: 1fr 560px;
+      gap: 40px;
       align-items: center;
       padding: 54px 0 44px;
     }
 
-    .hero-copy { position: relative; z-index: 2; }
+    .hero-inner::before {
+      right: clamp(300px, 32vw, 430px);
+      bottom: 56px;
+      width: 32px;
+      height: 36px;
+      background-image: url("assets/ic_drawing_heart5.webp");
+      transform: rotate(8deg);
+    }
+
+    .hero-copy { position: relative; z-index: 3; }
 
     .hero-title {
       margin: 0;
@@ -149,26 +195,54 @@
       min-height: 40px;
       padding: 0 16px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 999px;
       color: #5e4a40;
       background: rgba(255, 255, 255, .78);
       font-size: 13px;
       font-weight: 700;
     }
 
+    .meta img {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      margin-right: 4px;
+      vertical-align: -4px;
+    }
+
     .hero-visual {
+      position: relative;
+      z-index: 2;
       align-self: stretch;
       display: flex;
       align-items: end;
       justify-content: center;
-      min-height: 240px;
+      align-self: center;
+      min-height: 360px;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      z-index: -1;
+      width: min(620px, 116%);
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 46%, rgba(255, 214, 196, .55) 0 44%, transparent 74%);
+      filter: blur(30px);
+      transform: translate(-50%, -50%);
     }
 
     .hero-visual img {
-      width: 370px;
-      height: 240px;
+      width: 100%;
+      max-width: 580px;
+      aspect-ratio: 16 / 11;
       object-fit: contain;
-      object-position: center bottom;
+      -webkit-mask-image: radial-gradient(ellipse 74% 76% at 50% 52%, #000 46%, rgba(0,0,0,.55) 68%, transparent 86%);
+      mask-image: radial-gradient(ellipse 74% 76% at 50% 52%, #000 46%, rgba(0,0,0,.55) 68%, transparent 86%);
     }
 
     .important {
@@ -179,8 +253,10 @@
       align-items: center;
       padding: 24px;
       border: 1px solid rgba(245, 140, 124, .27);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, .72);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 92% 20%, rgba(255, 214, 198, .34) 0 16%, transparent 34%),
+        rgba(255, 255, 255, .78);
       box-shadow: 0 18px 48px rgba(138, 106, 88, .06);
     }
 
@@ -189,6 +265,7 @@
       height: 60px;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(0 8px 14px rgba(168, 84, 64, .13));
     }
 
     .important h2 {
@@ -218,7 +295,7 @@
       top: 78px;
       padding: 22px 14px;
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 18px;
       background: rgba(255,255,255,.78);
       box-shadow: 0 20px 54px rgba(138, 106, 88, .07);
       backdrop-filter: blur(16px);
@@ -247,7 +324,7 @@
       align-items: center;
       min-height: 42px;
       padding: 0 10px;
-      border-radius: 10px;
+      border-radius: 14px;
       color: var(--muted);
       font-size: 13px;
       font-weight: 700;
@@ -270,8 +347,10 @@
       margin: 22px 8px 0;
       padding: 20px 16px;
       border: 1px solid var(--line);
-      border-radius: 10px;
-      background: linear-gradient(180deg, #fffaf7, #fff);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 213, 196, .32) 0 18%, transparent 40%),
+        linear-gradient(180deg, #fffaf7, #fff);
       text-align: center;
     }
 
@@ -304,33 +383,26 @@
     }
 
     .policy-card {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 18px;
-      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      padding: 26px 28px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 18px;
       background: rgba(255,255,255,.82);
       box-shadow: 0 18px 52px rgba(138, 106, 88, .07);
       scroll-margin-top: 80px;
     }
 
-    .policy-icon {
-      width: 56px;
-      height: 56px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      overflow: hidden;
-      background: transparent;
-      flex: 0 0 56px;
-    }
-
-    .policy-icon img {
-      width: 56px;
-      height: 56px;
-      display: block;
-      object-fit: contain;
+    .policy-card::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 18px;
+      height: 20px;
+      background: url("assets/ic_drawing_heart3.webp") center / contain no-repeat;
+      opacity: .12;
+      pointer-events: none;
     }
 
     .policy-card h2 {
@@ -368,7 +440,7 @@
       overflow-x: auto;
       margin: 14px 0;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 16px;
       background: #fff;
     }
 
@@ -397,7 +469,9 @@
 
     .site-footer {
       border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, .82);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 213, 196, .32) 0 16%, transparent 34%),
+        rgba(255, 250, 247, .9);
     }
 
     .footer-inner {
@@ -444,8 +518,8 @@
 
     @media (max-width: 1024px) {
       .container { width: min(100% - 40px, var(--max)); }
-      .hero-inner { grid-template-columns: 1fr 360px; gap: 32px; }
-      .hero-visual img { width: 340px; }
+      .hero-inner { grid-template-columns: 1fr 400px; gap: 32px; }
+      .hero-visual img { width: 400px; height: auto; }
       .content-layout { grid-template-columns: 220px 1fr; gap: 18px; }
       .toc a { font-size: 12.5px; }
       .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
@@ -457,13 +531,17 @@
       .header-inner { height: 64px; }
       .brand-logo { width: 36px; height: 36px; }
       .hero-inner { grid-template-columns: 1fr; gap: 18px; padding: 42px 0 28px; }
+      .hero::before { left: 68%; top: 128px; width: 34px; height: 38px; opacity: .42; }
+      .hero::after,
+      .hero-inner::before { display: none; }
       .hero-copy { max-width: 100%; }
       .hero-title { font-size: clamp(36px, 8vw, 48px); line-height: 1.12; }
       .hero-desc { max-width: 100%; margin-top: 16px; font-size: 15.5px; line-height: 1.75; }
       .meta { margin-top: 18px; }
       .meta span { min-height: 38px; font-size: 12.5px; }
-      .hero-visual { min-height: auto; justify-content: center; }
-      .hero-visual img { width: min(100%, 390px); height: auto; }
+      .hero-visual { min-height: 220px; justify-content: center; }
+      .hero-visual::before { width: min(440px, 104%); height: 220px; }
+      .hero-visual img { width: min(100%, 420px); height: auto; }
       .important { grid-template-columns: 56px 1fr; gap: 14px; margin-top: 18px; padding: 20px; border-radius: 16px; }
       .important img { width: 56px; height: 56px; }
       .important h2 { font-size: 18px; }
@@ -486,12 +564,14 @@
       .header-inner { height: 58px; }
       .brand-logo { width: 34px; height: 34px; }
       .nav-list { gap: 16px; font-size: 12px; }
-      .hero-inner { padding: 30px 0 22px; }
+      .hero-inner { padding: 30px 0 20px; }
       .hero-title { font-size: 36px; letter-spacing: -.055em; }
       .hero-desc { font-size: 14.5px; line-height: 1.72; }
       .meta { display: grid; grid-template-columns: 1fr; gap: 8px; }
       .meta span { justify-content: center; width: 100%; border-radius: 14px; }
-      .hero-visual img { max-width: 340px; }
+      .hero-visual { min-height: 180px; }
+      .hero-visual::before { width: min(380px, 102%); height: 190px; }
+      .hero-visual img { max-width: 360px; }
       .important { grid-template-columns: 1fr; gap: 12px; padding: 18px; border-radius: 20px; }
       .important img { width: 52px; height: 52px; }
       .important h2 { margin-bottom: 6px; font-size: 17px; }
@@ -500,8 +580,8 @@
       .toc ol { grid-template-columns: 1fr; }
       .toc a { grid-template-columns: 32px 1fr; min-height: 42px; border-radius: 12px; }
       .policy-list { gap: 12px; }
-      .policy-card { grid-template-columns: 1fr; gap: 14px; padding: 20px; border-radius: 20px; scroll-margin-top: 70px; }
-      .policy-icon, .policy-icon img { width: 52px; height: 52px; }
+      .policy-card { padding: 20px; border-radius: 20px; scroll-margin-top: 70px; }
+      .policy-card::after { right: 16px; top: 16px; opacity: .1; }
       .policy-card h2 { font-size: 19px; line-height: 1.38; }
       .policy-card p, .policy-card li { font-size: 13.5px; line-height: 1.72; }
       .policy-card ul, .policy-card ol { padding-left: 18px; }
@@ -559,6 +639,7 @@
       <nav aria-label="주요 메뉴">
         <ul class="nav-list">
           <li><a href="/">홈</a></li>
+          <li><a href="/notices/">공지사항</a></li>
           <li><a href="/privacy">개인정보처리방침</a></li>
           <li><a href="/terms">이용약관</a></li>
         </ul>
@@ -576,7 +657,7 @@
             관련 법령에 따라 안전하게 보호하기 위해 최선을 다하고 있습니다.
           </p>
           <div class="meta" aria-label="정책 정보">
-            <span><img src="assets/icon-calendar.svg" alt="" width="16" height="16" style="display:inline-block;vertical-align:-3px;margin-right:6px;" />최종 개정일&nbsp; 2026. 05. 25.</span>
+            <span>최종 개정일&nbsp; 2026. 05. 25.</span>
             <span>시행일&nbsp; 2026. 05. 28.</span>
           </div>
         </div>
@@ -588,7 +669,7 @@
     </section>
 
     <section class="container important" aria-labelledby="important-title">
-      <img src="assets/important-notice-icon.svg" alt="" aria-hidden="true" />
+      <img src="assets/ic_bell.webp" alt="" aria-hidden="true" />
       <div>
         <h2 id="important-title">중요 안내</h2>
         <p>
@@ -612,22 +693,19 @@
           <li><a href="#section-6">처리 위탁 및 국외 이전</a></li>
           <li><a href="#section-7">이용자의 권리와 행사 방법</a></li>
           <li><a href="#section-8">안전성 확보 조치</a></li>
-          <li><a href="#section-9">쿠키 등 자동 수집 도구</a></li>
-          <li><a href="#section-10">개인정보 보호책임자</a></li>
-          <li><a href="#section-11">정책 변경 안내</a></li>
-          <li><a href="#section-12">회사 정보</a></li>
+          <li><a href="#section-9">개인정보 보호책임자</a></li>
+          <li><a href="#section-10">정책 변경 안내</a></li>
         </ol>
 
         <div class="toc-help">
           <strong>궁금한 점이 있으신가요?</strong>
           <p>개인정보 관련 문의는 보호책임자에게 연락해 주세요.</p>
-          <a href="#section-10">문의 방법 보기</a>
+          <a href="#section-9">문의 방법 보기</a>
         </div>
       </aside>
 
       <article class="policy-list" aria-labelledby="privacy-title">
         <section id="section-1" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-01-user.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>01. 수집하는 개인정보 항목</h2>
             <p>회사는 서비스 제공에 필요한 최소한의 개인정보를 다음과 같이 수집합니다.</p>
@@ -683,7 +761,6 @@
         </section>
 
         <section id="section-2" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-02-clipboard.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>02. 개인정보의 수집·이용 목적</h2>
             <ul>
@@ -698,7 +775,6 @@
         </section>
 
         <section id="section-3" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-03-time.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>03. 개인정보의 보유 및 이용 기간</h2>
             <ol>
@@ -723,7 +799,6 @@
         </section>
 
         <section id="section-4" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-04-group.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>04. 만 14세 미만 아동의 개인정보</h2>
             <p>
@@ -735,7 +810,6 @@
         </section>
 
         <section id="section-5" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-04-group.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>05. 개인정보의 제3자 제공</h2>
             <p>
@@ -750,7 +824,6 @@
         </section>
 
         <section id="section-6" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-05-cloud.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>06. 개인정보 처리 위탁 및 국외 이전</h2>
             <p>회사는 서비스 운영을 위해 다음과 같이 개인정보 처리를 위탁하고 있습니다.</p>
@@ -775,42 +848,29 @@
                     <td data-label="위탁 업무">iOS 푸시 알림(APNs) 발송, Apple 로그인 인증</td>
                     <td data-label="처리 위치">미국</td>
                   </tr>
-                  <tr>
-                    <td data-label="수탁업체">Cloudflare, Inc.</td>
-                    <td data-label="위탁 업무">약관·정책 등 정적 페이지 호스팅</td>
-                    <td data-label="처리 위치">전 세계 CDN(개인정보 미저장)</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
             <p>
               위 수탁업체 중 일부는 해외(미국)에 본사를 두고 있어 개인정보가 국외로 이전될 수 있습니다.
-              이전되는 정보의 항목·이전 목적·보유 기간은 본 처리방침에 명시된 바와 동일하며,
-              이전 시점은 서비스 이용 중 상시 발생합니다. 이전 방법은 네트워크를 통한 전송이며,
-              모든 통신 구간은 TLS 로 암호화됩니다.
+              이전은 서비스 이용 중 네트워크를 통해 이루어지며, 모든 통신 구간은 TLS 로 암호화됩니다.
             </p>
           </div>
         </section>
 
         <section id="section-7" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-06-lock.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>07. 이용자의 권리와 행사 방법</h2>
             <p>이용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
             <ul>
               <li>개인정보의 열람·정정: 앱 내 "마이" 화면에서 직접 확인·수정</li>
               <li>개인정보의 처리정지·삭제: 앱 내 "마이 → 회원 탈퇴" 기능 또는 이메일 문의</li>
-              <li>동의 철회: 앱 내 알림 설정 토글 또는 회원 탈퇴를 통해 가능</li>
+              <li>동의 철회: 앱 내 알림 설정 토글, OS 알림 설정 또는 회원 탈퇴를 통해 가능</li>
             </ul>
-            <p>
-              만 14세 미만 아동의 법정대리인이 그 자녀의 정보 처리에 관한 권리 행사를 원하는 경우,
-              아래 개인정보 보호책임자 이메일로 문의해 주시면 본인 확인 후 처리합니다.
-            </p>
           </div>
         </section>
 
         <section id="section-8" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-06-lock.svg" alt="" aria-hidden="true" /></div>
           <div>
             <h2>08. 개인정보의 안전성 확보 조치</h2>
             <ul>
@@ -824,61 +884,27 @@
         </section>
 
         <section id="section-9" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-07-cookie.svg" alt="" aria-hidden="true" /></div>
           <div>
-            <h2>09. 쿠키 등 자동 수집 도구 거부 방법</h2>
+            <h2>09. 개인정보 보호책임자</h2>
+            <ul>
+              <li>책임자: 조준호</li>
+              <li>이메일: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
+            </ul>
             <p>
-              본 서비스는 웹 쿠키를 사용하지 않습니다. 다만 푸시 알림 토큰 등 자동 수집되는 정보의
-              수집을 원하지 않는 경우, OS 설정(설정 → 알림 → PopoLog) 에서 알림 권한을 해제하실 수
-              있습니다. 이 경우 푸시 알림 기능이 제한될 수 있습니다.
+              개인정보 침해 신고나 분쟁조정이 필요한 경우 개인정보침해신고센터(국번 없이 118) 또는
+              개인정보분쟁조정위원회(1833-6972)에 도움을 요청할 수 있습니다.
             </p>
           </div>
         </section>
 
         <section id="section-10" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-08-manager.svg" alt="" aria-hidden="true" /></div>
           <div>
-            <h2>10. 개인정보 보호책임자</h2>
-            <p>
-              회사는 이용자의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위해 아래와 같이
-              개인정보 보호책임자를 두고 있습니다.
-            </p>
-            <ul>
-              <li>책임자: 조준호</li>
-              <li>이메일: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-            </ul>
-            <p>개인정보 침해로 인한 신고·상담이 필요한 경우 아래 기관에 도움을 요청할 수 있습니다.</p>
-            <ul>
-              <li>개인정보 침해신고센터: privacy.kisa.or.kr (국번 없이 118)</li>
-              <li>개인정보 분쟁조정위원회: kopico.go.kr (1833-6972)</li>
-              <li>대검찰청 사이버범죄수사단: spo.go.kr (02-3480-3573)</li>
-              <li>경찰청 사이버수사국: ecrm.cyber.go.kr (국번 없이 182)</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="section-11" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-10-notice.svg" alt="" aria-hidden="true" /></div>
-          <div>
-            <h2>11. 정책 변경에 관한 안내</h2>
+            <h2>10. 정책 변경에 관한 안내</h2>
             <p>
               본 개인정보처리방침은 법령·서비스의 변경에 따라 개정될 수 있으며, 변경 시 적용일 7일
               전부터 앱 내 공지사항을 통해 사전 안내합니다. 이용자에게 불리한 변경의 경우 적용일 30일
               전부터 공지하며, 앱 진입 시 변경된 방침에 대한 재동의 절차를 제공합니다.
             </p>
-          </div>
-        </section>
-
-        <section id="section-12" class="policy-card">
-          <div class="policy-icon"><img src="assets/policy-icon-09-chat.svg" alt="" aria-hidden="true" /></div>
-          <div>
-            <h2>12. 회사 정보</h2>
-            <ul>
-              <li>상호: 준호네소프트웨어</li>
-              <li>사업자등록번호: 717-20-02064</li>
-              <li>주소: 경상북도 경주시 동천로 30번길 8</li>
-              <li>고객 문의: <a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-            </ul>
           </div>
         </section>
       </article>
@@ -895,6 +921,7 @@
       <div>
         <h3>정책</h3>
         <ul>
+          <li><a href="/notices/">공지사항</a></li>
           <li><a href="/privacy">개인정보 처리방침</a></li>
           <li><a href="/terms">서비스 이용약관</a></li>
         </ul>

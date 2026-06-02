@@ -2,822 +2,640 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포포로그 POPPOLOG | 반려동물 가족 기록 앱</title>
-  <meta name="description" content="포포로그는 가족이 함께 반려동물의 일상, 건강, 산책, 식사, 병원 방문, 투약 기록을 공유하고 관리하는 반려동물 가족 기록 앱입니다." />
-  <link rel="icon" type="image/webp" href="/assets/lg_popo_square.webp" />
-  <link rel="apple-touch-icon" href="/assets/lg_popo_square.webp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="포포로그(PopoLog) v0.1 출시를 환영합니다. 반려동물의 일상·건강·산책·식사·병원·투약 기록을 가족과 함께 남기는 첫 버전 소식을 안내합니다." />
+  <title>포포로그 v0.1 출시를 환영합니다 | PopoLog 공지사항</title>
+  <link rel="icon" type="image/webp" href="../assets/lg_popo_square.webp" />
+  <link rel="apple-touch-icon" href="../assets/lg_popo_square.webp" />
   <style>
     :root {
       --coral: #f58c7c;
-      --coral-deep: #f26f61;
+      --coral-deep: #f36f61;
+      --coral-soft: #fff1e9;
       --cream: #fff8f3;
       --beige: #f2e4d8;
       --pink: #f8d9d7;
       --brown: #8a6a58;
       --ink: #2f241e;
-      --muted: #7d6a60;
-      --line: rgba(138, 106, 88, .16);
-      --card: rgba(255, 255, 255, .82);
-      --shadow: 0 24px 70px rgba(138, 106, 88, .14);
-      --radius-xl: 34px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --max: 1180px;
+      --muted: #6f5c53;
+      --line: rgba(138, 106, 88, .15);
+      --soft-line: rgba(245, 140, 124, .22);
+      --card: rgba(255, 255, 255, .88);
+      --shadow: 0 24px 70px rgba(138, 106, 88, .10);
+      --max: 1120px;
     }
 
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 10% 10%, rgba(248,217,215,.55), transparent 32%),
-        radial-gradient(circle at 90% 0%, rgba(245,140,124,.13), transparent 30%),
-        linear-gradient(180deg, #fffaf7 0%, #fff8f3 42%, #fff 100%);
+        radial-gradient(circle at 10% 0%, rgba(248, 217, 215, .56), transparent 32%),
+        radial-gradient(circle at 88% 4%, rgba(245, 140, 124, .16), transparent 34%),
+        linear-gradient(180deg, #fffaf7 0%, #fff8f3 42%, #ffffff 100%);
       word-break: keep-all;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 100;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--coral-deep);
+      transition: top .2s ease;
+    }
+    .skip-link:focus { top: 16px; }
 
     .container {
       width: min(var(--max), calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .nav {
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(18px);
-      background: rgba(255, 248, 243, .78);
+      height: 56px;
       border-bottom: 1px solid rgba(138, 106, 88, .08);
+      background: rgba(255, 250, 247, .86);
+      backdrop-filter: blur(18px);
     }
 
-    .nav-inner {
-      height: 78px;
+    .header-inner {
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 24px;
     }
 
-    .brand {
+    .brand-logo { width: 38px; height: 38px; border-radius: 8px; object-fit: contain; }
+
+    .nav-list {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
       font-weight: 800;
+      color: #3e302a;
+    }
+    .nav-list a {
+      display: inline-flex;
+      align-items: center;
+      height: 34px;
+    }
+    .nav-list a:hover { color: var(--coral-deep); }
+    .nav-list a[aria-current="page"] { color: var(--coral-deep); }
+
+    /* ── 히어로 ───────────────────────────── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(245, 140, 124, .15);
+      background:
+        radial-gradient(circle at 76% 18%, rgba(255, 222, 204, .58) 0 24%, transparent 48%),
+        radial-gradient(ellipse at 20% 46%, rgba(255, 255, 255, .95) 0 32%, rgba(255, 250, 247, .62) 54%, transparent 72%),
+        linear-gradient(90deg, #fff7f1 0%, #fff4ec 48%, #fff1e7 100%);
+      isolation: isolate;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: .54;
+    }
+
+    .hero::before {
+      left: max(24px, calc((100vw - var(--max)) / 2 + 260px));
+      top: 44px;
+      width: 44px;
+      height: 50px;
+      background-image: url("../assets/ic_drawing_heart2.webp");
+      transform: rotate(-10deg);
+    }
+
+    .hero::after {
+      right: max(28px, calc((100vw - var(--max)) / 2 + 90px));
+      top: 36px;
+      width: 30px;
+      height: 34px;
+      background-image: url("../assets/ic_drawing_heart3.webp");
+      transform: rotate(12deg);
+    }
+
+    .hero-inner {
+      position: relative;
+      min-height: 320px;
+      display: grid;
+      grid-template-columns: 1fr 560px;
+      gap: 40px;
+      align-items: center;
+      padding: 54px 0 44px;
+    }
+
+    .hero-copy { position: relative; z-index: 3; }
+
+    .notice-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 76px;
+      height: 30px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #03b26c;
+      background: #f0faf6;
+      border: 1px solid #cdeede;
+    }
+
+    .hero-title {
+      margin: 16px 0 0;
+      color: var(--ink);
+      font-size: clamp(38px, 5.1vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -.06em;
+    }
+    .hero-title .accent { color: var(--coral-deep); }
+
+    .hero-desc {
+      max-width: 560px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
       letter-spacing: -.02em;
     }
 
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: white;
-      background: linear-gradient(135deg, var(--coral), var(--coral-deep));
-      box-shadow: 0 12px 28px rgba(245, 140, 124, .3);
-    }
-
-    .brand small {
-      display: block;
-      margin-top: 1px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--brown);
-      letter-spacing: .02em;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      color: #4f4038;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .nav-cta, .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      height: 46px;
-      padding: 0 22px;
-      border: 0;
-      border-radius: 999px;
-      color: white;
-      background: linear-gradient(135deg, var(--coral), var(--coral-deep));
-      box-shadow: 0 16px 36px rgba(245, 140, 124, .28);
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 46px;
-      padding: 0 22px;
-      border: 1px solid rgba(245, 140, 124, .52);
-      border-radius: 999px;
-      color: var(--coral-deep);
-      background: rgba(255,255,255,.68);
-      font-weight: 800;
-    }
-
-    .section {
-      padding: 96px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--coral-deep);
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .02em;
-    }
-
-    .title {
-      margin: 0;
-      font-size: clamp(34px, 4.6vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -.06em;
-      color: var(--ink);
-    }
-
-    .title .accent { color: var(--coral-deep); }
-
-    .desc {
-      margin: 22px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .hero {
-      min-height: calc(100vh - 78px);
-      padding: 72px 0 54px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: .92fr 1.08fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-copy h1 {
-      margin: 0;
-      max-width: 620px;
-      font-size: clamp(46px, 6.2vw, 86px);
-      line-height: 1.02;
-      letter-spacing: -.075em;
-    }
-
-    .hero-copy h1 span {
-      display: inline-block;
-      color: var(--coral-deep);
-      position: relative;
-    }
-
-    .hero-copy h1 span::after {
-      content: "♡";
-      position: absolute;
-      right: -54px;
-      top: 14px;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: white;
-      color: var(--coral);
-      box-shadow: var(--shadow);
-      font-size: 28px;
-      letter-spacing: 0;
-    }
-
-    .hero-actions {
+    .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
+      gap: 10px;
+      margin-top: 24px;
     }
-
-    .hero-media {
-      position: relative;
-      min-height: 560px;
-    }
-
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      border-radius: 48px;
-      overflow: hidden;
-      background: var(--pink);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(255,248,243,.2), rgba(255,248,243,.1));
-    }
-
-    .floating-card {
-      position: absolute;
-      right: 0;
-      bottom: 40px;
-      z-index: 3;
-      width: 250px;
-      padding: 18px;
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,.86);
-      box-shadow: 0 20px 50px rgba(138, 106, 88, .16);
-      backdrop-filter: blur(16px);
-    }
-
-    .floating-card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-
-    .floating-card span {
-      color: var(--muted);
+      border-radius: 999px;
+      color: #5e4a40;
+      background: rgba(255, 255, 255, .78);
       font-size: 13px;
-      line-height: 1.5;
+      font-weight: 700;
     }
 
-    .feature-strip {
-      margin-top: 44px;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: rgba(255,255,255,.74);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .feature-mini {
-      min-height: 132px;
-      padding: 24px 16px;
-      text-align: center;
-      border-right: 1px solid var(--line);
-    }
-
-    .feature-mini:last-child { border-right: 0; }
-
-    .icon {
-      width: 38px;
-      height: 38px;
-      margin: 0 auto 12px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: var(--coral-deep);
-      background: rgba(245, 140, 124, .12);
-      font-size: 21px;
-    }
-
-    .icon img { width: 24px; height: 24px; display: block; }
-
-    .feature-mini b {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .feature-mini p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .showcase {
-      display: grid;
-      grid-template-columns: .86fr 1.14fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .phone-wrap {
+    .hero-visual {
       position: relative;
-      min-height: 590px;
-    }
-
-    .phone {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(330px, 62vw);
-      transform: translate(-50%, -50%);
-      padding: 10px;
-      border-radius: 38px;
-      background: #121212;
-      box-shadow: 0 34px 90px rgba(48, 34, 28, .25);
-    }
-
-    .phone img {
-      border-radius: 30px;
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .info-chip {
-      position: absolute;
-      max-width: 250px;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(255,255,255,.88);
-      box-shadow: 0 20px 54px rgba(138, 106, 88, .13);
-      backdrop-filter: blur(16px);
-    }
-
-    .info-chip:nth-child(2) { left: 0; top: 120px; }
-    .info-chip:nth-child(3) { right: 0; top: 190px; }
-    .info-chip:nth-child(4) { left: 32px; bottom: 110px; }
-
-    .info-chip b { display: block; margin-bottom: 6px; }
-    .info-chip p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
-
-    .story {
-      background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,248,243,.9));
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: .72fr 1.28fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .polaroids {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      align-items: center;
-    }
-
-    .polaroid {
-      padding: 10px 10px 34px;
-      border-radius: 20px;
-      background: white;
-      box-shadow: 0 20px 60px rgba(138, 106, 88, .14);
-      transform: rotate(var(--r));
-    }
-
-    .polaroid:nth-child(1) { --r: -5deg; margin-top: 50px; }
-    .polaroid:nth-child(2) { --r: 2deg; }
-    .polaroid:nth-child(3) { --r: 5deg; margin-top: 70px; }
-    .polaroid:nth-child(4) { --r: 3deg; grid-column: 1 / 2; margin-top: -24px; }
-    .polaroid:nth-child(5) { --r: -4deg; grid-column: 2 / 4; }
-
-    .polaroid img {
-      aspect-ratio: 1 / .8;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
-    }
-
-    .testimonial {
-      background: linear-gradient(180deg, rgba(248,217,215,.42), rgba(255,248,243,.88));
-    }
-
-    .center {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 44px;
-    }
-
-    .reviews {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .review {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: rgba(255,255,255,.76);
-      box-shadow: var(--shadow);
-    }
-
-    .review-head {
+      z-index: 2;
+      align-self: center;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
+      justify-content: center;
+      min-height: 360px;
     }
-
-    .review-head img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .review p {
-      margin: 0;
-      color: #5e4a40;
-      line-height: 1.75;
-    }
-
-    .stars {
-      color: var(--coral-deep);
-      margin-top: 18px;
-      letter-spacing: 2px;
-    }
-
-    .cta {
-      padding-bottom: 0;
-      background:
-        radial-gradient(circle at 70% 20%, rgba(245,140,124,.18), transparent 28%),
-        linear-gradient(180deg, #fff8f3, #fff);
-    }
-
-    .cta-box {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 48px;
-      align-items: center;
-      padding: 62px;
-      border-radius: 44px;
-      background: linear-gradient(135deg, rgba(248,217,215,.72), rgba(255,255,255,.88));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .phones {
-      position: relative;
-      min-height: 460px;
-    }
-
-    .phone-small {
+    .hero-visual::before {
+      content: "";
       position: absolute;
-      width: 250px;
-      padding: 8px;
-      border-radius: 34px;
-      background: #111;
-      box-shadow: 0 28px 70px rgba(48,34,28,.2);
+      left: 50%;
+      top: 54%;
+      z-index: -1;
+      width: min(620px, 116%);
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 46%, rgba(255, 214, 196, .55) 0 44%, transparent 74%);
+      filter: blur(30px);
+      transform: translate(-50%, -50%);
     }
-
-    .phone-small img {
-      border-radius: 26px;
-      height: 420px;
+    .hero-visual img {
       width: 100%;
+      max-width: 580px;
+      aspect-ratio: 16 / 11;
       object-fit: cover;
-      object-position: top center;
+      -webkit-mask-image: radial-gradient(ellipse 74% 76% at 50% 50%, #000 46%, rgba(0,0,0,.55) 68%, transparent 88%);
+      mask-image: radial-gradient(ellipse 74% 76% at 50% 50%, #000 46%, rgba(0,0,0,.55) 68%, transparent 88%);
     }
 
-    .phone-small:first-child {
-      left: 8%;
-      top: 24px;
-      transform: rotate(-7deg);
+    /* ── 본문 ─────────────────────────────── */
+    .article {
+      padding: 8px 0 72px;
     }
 
-    .phone-small:last-child {
-      right: 8%;
-      top: 52px;
-      transform: rotate(8deg);
-    }
-
-    .qr-card {
-      margin-top: 28px;
-      width: 154px;
-      height: 154px;
-      padding: 14px;
+    .important {
+      margin: 28px auto 22px;
       display: grid;
-      place-items: center;
-      border-radius: 24px;
-      background: white;
-      box-shadow: 0 18px 50px rgba(138,106,88,.12);
-      color: var(--brown);
-      font-weight: 900;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.4;
+      grid-template-columns: 72px 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 24px;
+      border: 1px solid rgba(245, 140, 124, .27);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 92% 20%, rgba(255, 214, 198, .34) 0 16%, transparent 34%),
+        rgba(255, 255, 255, .78);
+      box-shadow: 0 18px 48px rgba(138, 106, 88, .06);
     }
-
-    footer {
-      margin-top: 72px;
-      padding: 42px 0;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,.72);
+    .important img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 8px 14px rgba(168, 84, 64, .13));
     }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.6fr repeat(3, 1fr);
-      gap: 36px;
+    .important h2 {
+      margin: 0 0 8px;
+      color: var(--coral-deep);
+      font-size: 20px;
+      letter-spacing: -.03em;
     }
+    .important p { margin: 0; color: #55433b; font-size: 14.5px; line-height: 1.75; }
 
-    footer h4 {
+    .block {
       margin: 0 0 14px;
-      font-size: 14px;
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .84);
+      box-shadow: 0 18px 52px rgba(138, 106, 88, .07);
     }
-
-    footer p, footer li {
-      color: var(--muted);
+    .block-head {
+      margin: 0 0 6px;
+      color: var(--coral-deep);
       font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+    .block h2 {
+      margin: 0 0 14px;
+      color: #463229;
+      font-size: 23px;
+      line-height: 1.3;
+      letter-spacing: -.04em;
+    }
+    .block > p {
+      margin: 0 0 14px;
+      color: #5d4a42;
+      font-size: 15px;
       line-height: 1.8;
     }
+    .block > p:last-child { margin-bottom: 0; }
+    .block a { color: var(--coral-deep); font-weight: 800; }
+    .block a:hover { text-decoration: underline; }
 
-    footer ul { list-style: none; padding: 0; margin: 0; }
-
-    .fade-up {
-      animation: fadeUp .7s ease both;
+    .feature-grid {
+      margin-top: 6px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .feature {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 90% 12%, rgba(255, 224, 212, .26) 0 18%, transparent 40%),
+        rgba(255, 251, 248, .9);
+    }
+    .feature .ic {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+    }
+    .feature .ic img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 7px 12px rgba(168, 84, 64, .16));
+    }
+    /* 발자국 아이콘은 연한 베이지라 코랄 배경 위에서 보이도록 칩으로 감싼다 */
+    .feature .ic-soft {
+      background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+      box-shadow: 0 10px 22px rgba(245, 140, 124, .3);
+    }
+    .feature .ic-soft img {
+      width: 30px;
+      height: 30px;
+      filter: none;
+    }
+    .feature b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      color: #463229;
+      letter-spacing: -.02em;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+    .closing {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 32px;
+      border-radius: 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255, 213, 196, .4) 0 18%, transparent 42%),
+        linear-gradient(135deg, rgba(248, 217, 215, .7), rgba(255, 255, 255, .9));
+      box-shadow: var(--shadow);
+    }
+    .closing h2 {
+      margin: 0;
+      font-size: clamp(24px, 3.4vw, 32px);
+      line-height: 1.25;
+      letter-spacing: -.04em;
+      color: #463229;
+    }
+    .closing p { margin: 0; color: #5d4a42; font-size: 15px; line-height: 1.8; }
+    .closing .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+      box-shadow: 0 16px 36px rgba(245, 140, 124, .28);
+    }
+    .btn-secondary {
+      color: var(--coral-deep);
+      border: 1px solid rgba(245, 140, 124, .52);
+      background: rgba(255, 255, 255, .7);
     }
 
-    @media (max-width: 1180px) {
-      .container { width: min(var(--max), calc(100% - 40px)); }
-      .hero-grid { gap: 32px; }
-      .showcase, .story-grid { gap: 48px; }
-      .feature-strip { grid-template-columns: repeat(4, 1fr); }
-      .feature-mini:nth-child(4) { border-right: 0; }
-      .feature-mini:nth-child(n+5) { border-top: 1px solid var(--line); }
-      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    /* ── 푸터 ─────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 213, 196, .32) 0 16%, transparent 34%),
+        rgba(255, 250, 247, .9);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 32px;
+      padding: 40px 0;
+    }
+    .footer-brand {
+      color: var(--coral-deep);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+    .footer-inner p, .footer-inner li, .copyright {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .footer-inner h3 { margin: 0 0 12px; font-size: 13px; }
+    .footer-inner ul { margin: 0; padding: 0; list-style: none; }
+    .footer-inner ul a:hover { color: var(--coral-deep); }
+    .copyright {
+      padding: 18px 0 30px;
+      border-top: 1px solid rgba(138,106,88,.1);
+      text-align: center;
     }
 
-    @media (max-width: 960px) {
-      .container { width: min(var(--max), calc(100% - 36px)); }
-      .section { padding: 80px 0; }
-      .nav-inner { height: 68px; gap: 18px; }
-      .menu { gap: 18px; font-size: 13px; }
-      .hero { min-height: auto; padding: 56px 0 44px; }
-      .hero-grid,
-      .showcase,
-      .story-grid,
-      .cta-box,
-      .footer-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 1024px) {
+      .container { width: min(100% - 40px, var(--max)); }
+      .hero-inner { grid-template-columns: 1fr 400px; gap: 32px; }
+      .hero-visual img { width: 400px; height: auto; }
+      .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      .site-header { height: auto; }
+      .header-inner { height: 64px; }
+      .brand-logo { width: 36px; height: 36px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 18px; padding: 42px 0 28px; }
+      .hero::before { left: 68%; top: 128px; width: 34px; height: 38px; opacity: .42; }
+      .hero::after { display: none; }
+      .hero-copy { max-width: 100%; }
+      .hero-title { font-size: clamp(34px, 8vw, 46px); line-height: 1.14; }
+      .hero-desc { max-width: 100%; margin-top: 16px; font-size: 15.5px; line-height: 1.75; }
+      .meta { margin-top: 18px; }
+      .meta span { min-height: 38px; font-size: 12.5px; }
+      .hero-visual { min-height: 220px; }
+      .hero-visual::before { width: min(440px, 104%); height: 220px; }
+      .hero-visual img { width: min(100%, 420px); height: auto; }
+      .important { grid-template-columns: 56px 1fr; gap: 14px; margin-top: 18px; padding: 20px; border-radius: 16px; }
+      .important img { width: 56px; height: 56px; }
+      .important h2 { font-size: 18px; }
+      .important p { font-size: 13.5px; }
+      .footer-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        background:
+          radial-gradient(circle at 20% -4%, rgba(248, 217, 215, .68), transparent 40%),
+          linear-gradient(180deg, #fffaf7 0%, #fff8f3 46%, #ffffff 100%);
       }
-      .hero-grid { gap: 28px; }
-      .hero-media { min-height: 380px; }
-      .hero-copy h1 span::after { right: -48px; top: 10px; }
-      .feature-strip { grid-template-columns: repeat(3, 1fr); }
-      .feature-mini { border-right: 1px solid var(--line); }
-      .feature-mini:nth-child(3n) { border-right: 0; }
-      .feature-mini:nth-child(4) { border-right: 1px solid var(--line); }
-      .feature-mini:nth-child(n+4) { border-top: 1px solid var(--line); }
-      .phone-wrap { min-height: 540px; }
-      .floating-card { right: auto; left: 16px; bottom: 24px; width: 240px; }
-      .polaroids { grid-template-columns: repeat(3, 1fr); }
-      .polaroid:nth-child(4) { grid-column: 1 / 3; margin-top: 0; }
-      .polaroid:nth-child(5) { grid-column: 3 / 4; margin-top: 30px; }
-      .cta-box { padding: 44px 28px; gap: 36px; }
-      .phones { min-height: 420px; }
-      .footer-grid { gap: 28px; }
+      .container { width: min(100% - 28px, var(--max)); }
+      .header-inner { height: 58px; }
+      .brand-logo { width: 34px; height: 34px; }
+      .nav-list { gap: 16px; font-size: 12px; }
+      .hero-inner { padding: 30px 0 20px; }
+      .hero-title { font-size: 32px; letter-spacing: -.055em; }
+      .hero-desc { font-size: 14.5px; line-height: 1.72; }
+      .meta { display: grid; grid-template-columns: 1fr; gap: 8px; }
+      .meta span { justify-content: center; width: 100%; border-radius: 14px; }
+      .hero-visual { min-height: 178px; }
+      .hero-visual::before { width: min(380px, 102%); height: 190px; }
+      .hero-visual img { max-width: 360px; }
+      .important { grid-template-columns: 1fr; gap: 12px; padding: 18px; border-radius: 20px; }
+      .important img { width: 52px; height: 52px; }
+      .important h2 { margin-bottom: 6px; font-size: 17px; }
+      .important p { font-size: 13px; line-height: 1.68; }
+      .block { padding: 22px 20px; border-radius: 20px; }
+      .block h2 { font-size: 20px; }
+      .block > p { font-size: 14px; line-height: 1.74; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .closing { padding: 26px 20px; border-radius: 22px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 22px; padding: 34px 0; }
+      .footer-brand { font-size: 22px; }
+      .copyright { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
     }
 
-    @media (max-width: 720px) {
-      .container { width: min(var(--max), calc(100% - 32px)); }
-      .section { padding: 64px 0; }
-      .nav-inner { height: 62px; gap: 14px; }
-      .menu { gap: 14px; font-size: 12.5px; }
-      .hero { padding: 44px 0 36px; }
-      .hero-copy h1 { font-size: clamp(40px, 8vw, 56px); }
-      .hero-copy h1 span::after { display: none; }
-      .desc { font-size: 15.5px; line-height: 1.72; }
-      .hero-media { min-height: 320px; }
-      .feature-strip { grid-template-columns: repeat(2, 1fr); border-radius: 22px; }
-      .feature-mini { border-right: 1px solid var(--line) !important; }
-      .feature-mini:nth-child(2n) { border-right: 0 !important; }
-      .feature-mini:nth-child(n+3) { border-top: 1px solid var(--line); }
-      .feature-mini:nth-child(7) { grid-column: 1 / 3; border-right: 0 !important; }
-      .phone-wrap { min-height: auto; padding: 24px 0; }
-      .phone { position: relative; left: auto; top: auto; transform: none; margin: 0 auto; width: min(290px, 70vw); }
-      .floating-card,
-      .info-chip {
-        position: relative !important;
-        inset: auto !important;
-        margin: 14px 0 0;
-        max-width: none;
-        width: auto;
-      }
-      .polaroids { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .polaroid { transform: none !important; margin: 0 !important; padding: 8px 8px 24px; }
-      .polaroid:nth-child(n) { grid-column: auto; }
-      .cta-box { padding: 32px 22px; gap: 28px; border-radius: 34px; }
-      .phones { min-height: 360px; }
-      .phone-small { width: 200px; }
-      .phone-small img { height: 340px; }
-    }
-
-    @media (max-width: 480px) {
-      .container { width: min(var(--max), calc(100% - 24px)); }
-      .section { padding: 52px 0; }
-      .menu { gap: 10px; font-size: 12px; }
-      .menu a { white-space: nowrap; }
-      .hero-copy h1 { font-size: 38px; letter-spacing: -.06em; }
-      .title { font-size: clamp(28px, 7.6vw, 38px); letter-spacing: -.05em; }
-      .eyebrow { font-size: 12.5px; }
-      .desc { font-size: 14.5px; }
-      .hero-media { min-height: 260px; border-radius: 32px; }
-      .hero-photo { border-radius: 32px; }
-      .feature-strip { grid-template-columns: 1fr; border-radius: 20px; }
-      .feature-mini { border-right: 0 !important; border-bottom: 1px solid var(--line); padding: 20px 14px; min-height: auto; }
-      .feature-mini:nth-child(n+3) { border-top: 0; }
-      .feature-mini:last-child { border-bottom: 0; grid-column: auto; }
-      .floating-card { padding: 16px; border-radius: 18px; }
-      .info-chip { padding: 16px 18px; border-radius: 18px; }
-      .polaroids { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .cta-box { padding: 26px 18px; border-radius: 28px; }
-      .phones { min-height: auto; display: flex; justify-content: center; gap: 12px; padding: 16px 0; }
-      .phone-small { position: relative; width: 150px; padding: 6px; border-radius: 26px; }
-      .phone-small:first-child,
-      .phone-small:last-child { left: auto; right: auto; top: auto; transform: rotate(-4deg); }
-      .phone-small:last-child { transform: rotate(4deg); }
-      .phone-small img { height: 260px; border-radius: 20px; }
-      .footer-grid { gap: 22px; }
-      footer { padding: 32px 0; padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
+    @media (max-width: 390px) {
+      .container { width: min(100% - 22px, var(--max)); }
+      .hero-title { font-size: 29px; }
+      .hero-desc, .block > p { font-size: 13px; }
     }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="/" aria-label="PopoLog 홈" style="display:inline-flex;align-items:center;">
-        <img src="/assets/lg_popo_square.webp" alt="PopoLog" style="width:38px;height:38px;border-radius:8px;object-fit:contain;" />
+  <a class="skip-link" href="#main-content">본문으로 이동</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" aria-label="PopoLog 홈">
+        <img class="brand-logo" src="../assets/lg_popo_square.webp" alt="PopoLog" />
       </a>
 
-      <nav class="menu" aria-label="주요 메뉴">
-        <a href="/">홈</a>
-        <a href="/privacy">개인정보처리방침</a>
-        <a href="/terms">이용약관</a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li><a href="/">홈</a></li>
+          <li><a href="/notices/" aria-current="page">공지사항</a></li>
+          <li><a href="/privacy">개인정보처리방침</a></li>
+          <li><a href="/terms">이용약관</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main id="main-content">
     <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy fade-up">
-            <p class="eyebrow">Pet Family Daily Log</p>
-            <h1>함께 기록하는 <span>포포로그</span></h1>
-            <p class="desc">
-              반려동물의 일상, 건강, 산책, 식사, 병원 방문과 투약까지
-              소중한 순간을 가족과 함께 기록하고 관리하세요.
-            </p>
-          </div>
-
-          <div class="hero-media" aria-label="강아지와 고양이 이미지">
-            <div class="hero-photo">
-              <img src="/assets/pet_cuddle.webp" alt="따뜻한 담요 위의 강아지와 고양이" />
-            </div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="notice-badge">서비스</span>
+          <h1 class="hero-title">포포로그 <span class="accent">v0.1</span><br />출시를 환영합니다</h1>
+          <p class="hero-desc">
+            반려동물의 일상부터 건강까지, 소중한 순간을
+            가족과 함께 기록하는 포포로그의 첫 이야기가 시작됩니다.
+          </p>
+          <div class="meta" aria-label="공지 정보">
+            <span>분류&nbsp; 서비스</span>
+            <span>등록일&nbsp; 2026. 06. 02.</span>
           </div>
         </div>
 
-        <div class="feature-strip" aria-label="핵심 기능 요약">
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-note.svg" alt="" /></div><b>일상 기록</b><p>매일의 순간을 쉽고 빠르게 기록</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-health.svg" alt="" /></div><b>건강 관리</b><p>건강 상태를 한눈에 확인</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-paw.svg" alt="" /></div><b>산책 기록</b><p>시간, 거리, 코스를 저장</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-meal.svg" alt="" /></div><b>식사 관리</b><p>식단과 급여량을 관리</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-hospital.svg" alt="" /></div><b>병원 방문</b><p>진료 기록과 예약 관리</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-pill.svg" alt="" /></div><b>투약 관리</b><p>약 복용 시간과 용량 기록</p></div>
-          <div class="feature-mini"><div class="icon"><img src="/assets/icon-feat-family.svg" alt="" /></div><b>가족 공유</b><p>가족과 함께 돌봄 공유</p></div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="../assets/family_illustration.webp" alt="" />
         </div>
       </div>
     </section>
 
-    <section id="features" class="section">
-      <div class="container showcase">
+    <article class="container article" aria-labelledby="welcome-heading">
+      <h1 id="welcome-heading" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">포포로그 v0.1 출시를 환영합니다</h1>
+
+      <section class="important" aria-label="환영 인사">
+        <img src="../assets/ic_bell.webp" alt="" aria-hidden="true" />
         <div>
-          <p class="eyebrow">주요 기능</p>
-          <h2 class="title">소중한 순간을 더 쉽게,<br />더 따뜻하게</h2>
-          <p class="desc">
-            포포로그는 반려동물의 하루와 건강, 추억을 기록하고
-            가족과 함께 공유할 수 있도록 설계된 앱입니다.
+          <h2>포포로그를 찾아주셔서 감사합니다</h2>
+          <p>
+            포포로그(PopoLog)는 가족이 함께 반려동물의 하루를 기록하고 돌보는 앱입니다.
+            첫 버전 v0.1을 통해 일상·건강·산책·식사·병원·투약 기록을 한곳에 모으고,
+            소중한 순간을 가족과 나눌 수 있도록 준비했습니다.
           </p>
         </div>
+      </section>
 
-        <div class="phone-wrap">
-          <div class="phone">
-            <img src="/assets/app_screen.webp" alt="포포로그 앱 기록 화면" />
-          </div>
-          <div class="floating-card">
-            <strong>오늘의 기록 완료</strong>
-            <span>산책 30분 · 식사 완료 · 투약 알림 확인</span>
-          </div>
-          <div class="info-chip"><b>일상 기록</b><p>사진, 메모, 기분까지 하루 기록을 남겨요.</p></div>
-          <div class="info-chip"><b>건강 관리</b><p>체중, 병원 방문, 투약 기록을 정리해요.</p></div>
-          <div class="info-chip"><b>가족 공유</b><p>가족 모두가 같은 기록을 확인해요.</p></div>
+      <section class="block" aria-labelledby="feat-title">
+        <p class="block-head">이번 버전에서 만나는 기능</p>
+        <h2 id="feat-title">우리 아이의 하루를<br />더 쉽고 따뜻하게</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="ic"><img src="../assets/ic_record.webp" alt="" /></span><div><b>일상 기록</b><p>매일의 순간을 사진·메모·기분과 함께 빠르게 남겨요.</p></div></div>
+          <div class="feature"><span class="ic"><img src="../assets/ic_health.webp" alt="" /></span><div><b>건강 관리</b><p>체중과 컨디션 등 건강 상태를 한눈에 확인해요.</p></div></div>
+          <div class="feature"><span class="ic ic-soft"><img src="../assets/ic_footprint.webp" alt="" /></span><div><b>산책 기록</b><p>산책 시간·거리·코스를 저장하고 돌아봐요.</p></div></div>
+          <div class="feature"><span class="ic"><img src="../assets/ic_calendar.webp" alt="" /></span><div><b>식사 관리</b><p>식단과 급여 시간을 기록해 꾸준히 챙겨요.</p></div></div>
+          <div class="feature"><span class="ic"><img src="../assets/ic_hospital.webp" alt="" /></span><div><b>병원 방문</b><p>진료 내용과 예약 일정을 정리해 두어요.</p></div></div>
+          <div class="feature"><span class="ic"><img src="../assets/ic_bell.webp" alt="" /></span><div><b>투약 관리</b><p>약 복용 시간과 용량을 기록하고 알림으로 챙겨요.</p></div></div>
+          <div class="feature"><span class="ic"><img src="../assets/ic_family.webp" alt="" /></span><div><b>가족 공유</b><p>가족 모두가 같은 기록을 함께 확인하고 돌봐요.</p></div></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="story" class="section story">
-      <div class="container story-grid">
-        <div>
-          <p class="eyebrow">포포로그 스토리</p>
-          <h2 class="title">기록은 사랑이 되고<br />추억이 됩니다</h2>
-          <p class="desc">
-            작지만 따뜻한 순간들이 모여 가족의 이야기가 됩니다.
-            포포로그와 함께 그 시간을 오래도록 간직하세요.
-          </p>
+      <section class="block" aria-labelledby="start-title">
+        <p class="block-head">함께 시작하기</p>
+        <h2 id="start-title">작은 기록이 모여<br />가족의 이야기가 됩니다</h2>
+        <p>
+          포포로그는 앞으로도 여러분의 의견을 반영해 꾸준히 업데이트할 예정입니다.
+          새로운 기능과 개선 소식은 <a href="/notices/">공지사항</a>을 통해 가장 먼저 안내드릴게요.
+        </p>
+        <p>
+          이용 중 불편한 점이나 바라는 기능이 있다면 언제든 알려주세요.
+          여러분의 한마디가 포포로그를 더 따뜻하게 만듭니다.
+        </p>
+      </section>
+
+      <section class="closing" aria-label="문의 안내">
+        <h2>오늘부터 우리 아이의 순간을<br />가족과 함께 남겨보세요</h2>
+        <p>궁금한 점이나 의견은 이메일로 편하게 보내주세요.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:hiwhwnsgh@gmail.com">문의하기</a>
+          <a class="btn btn-secondary" href="/notices/">공지사항 목록</a>
         </div>
-
-        <div class="polaroids" aria-label="반려동물 추억 사진">
-          <div class="polaroid"><img src="/assets/hero_family.webp" alt="가족과 반려동물이 함께 노을을 보는 장면" /></div>
-          <div class="polaroid"><img src="/assets/family_illustration.webp" alt="가족과 반려동물이 함께 있는 일러스트" /></div>
-          <div class="polaroid"><img src="/assets/walk_illustration.webp" alt="산책 중인 강아지와 고양이 일러스트" /></div>
-          <div class="polaroid"><img src="/assets/sleep_illustration.webp" alt="잠자는 강아지와 고양이 일러스트" /></div>
-          <div class="polaroid"><img src="/assets/birthday_illustration.webp" alt="생일 케이크 앞 강아지와 고양이 일러스트" /></div>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="download" class="section cta">
-      <div class="container">
-        <div class="cta-box">
-          <div>
-            <p class="eyebrow">곧 만나요</p>
-            <h2 class="title">우리 아이의 모든 순간을<br />가족과 함께 기록하세요</h2>
-            <p class="desc">
-              포포로그는 정식 출시를 준비하고 있습니다.
-              출시 소식과 베타 테스트 안내를 가장 먼저 받아보고 싶다면 이메일로 알려주세요.
-            </p>
-          </div>
-
-          <div class="phones">
-            <div class="phone-small"><img src="/assets/app_screen2.webp" alt="포포로그 앱 화면 1" /></div>
-            <div class="phone-small"><img src="/assets/app_screen3.webp" alt="포포로그 앱 화면 2" /></div>
-          </div>
-        </div>
-
-        <footer>
-          <div class="footer-grid">
-            <div>
-              <a class="brand" href="#top">
-                <img src="/assets/lg_popo_square.webp" alt="PopoLog" style="width:38px;height:38px;border-radius:8px;object-fit:contain;" />
-                <span>PopoLog<small>준호네소프트웨어</small></span>
-              </a>
-              <p>반려동물의 일상·건강·추억을 가족과 함께 기록해요.</p>
-              <p>© <span id="currentYear">2026</span> 준호네소프트웨어. All rights reserved.</p>
-            </div>
-            <div>
-              <h4>정책</h4>
-              <ul>
-                <li><a href="/privacy">개인정보 처리방침</a></li>
-                <li><a href="/terms">서비스 이용약관</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4>고객 문의</h4>
-              <ul>
-                <li><a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
-              </ul>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </section>
+      </section>
+    </article>
   </main>
 
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">PopoLog</div>
+        <p>반려동물의 일상·건강·추억을 가족과 함께 기록해요.</p>
+        <p>© <span id="currentYear">2026</span> 준호네소프트웨어. All rights reserved.</p>
+      </div>
+      <div>
+        <h3>정책</h3>
+        <ul>
+          <li><a href="/notices/">공지사항</a></li>
+          <li><a href="/privacy">개인정보 처리방침</a></li>
+          <li><a href="/terms">서비스 이용약관</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>고객 문의</h3>
+        <ul>
+          <li><a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="currentYearFooter">2026</span> 준호네소프트웨어</div>
+  </footer>
+
   <script>
-    const _yearEl = document.getElementById("currentYear");
-    if (_yearEl) _yearEl.textContent = new Date().getFullYear();
+    const y = new Date().getFullYear();
+    const a = document.getElementById("currentYear");
+    const b = document.getElementById("currentYearFooter");
+    if (a) a.textContent = y;
+    if (b) b.textContent = y;
   </script>
 </body>
 </html>

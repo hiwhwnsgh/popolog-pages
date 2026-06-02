@@ -6,36 +6,61 @@ PopoLog 앱의 약관·정책 정적 페이지. Cloudflare Pages 로 호스팅.
 
 ```
 .
-├── index.html      # 랜딩 (정책 페이지 진입점)
-├── privacy.html    # 개인정보처리방침
-├── terms.html      # 서비스 이용약관
-├── style.css       # 공용 스타일
-└── README.md
+├── index.html              # 랜딩 (정책 페이지 진입점)
+├── privacy.html            # 개인정보처리방침
+├── terms.html              # 서비스 이용약관
+├── notices/index.html      # 공지사항 목록 (빌드 타임에 DB에서 생성)
+├── style.css               # 공용 스타일
+├── scripts/
+│   └── build-notices.mjs   # 공지 목록 생성기
+└── package.json
 ```
 
-빌드 스텝 없음 — HTML 파일을 그대로 서빙합니다. 약관 내용 수정은 해당 `.html` 의
-`<main>` 안 텍스트를 직접 편집하면 됩니다.
+약관·정책은 빌드 불필요 — `.html` 의 `<main>` 안 텍스트를 직접 편집하면 됩니다.
+**공지사항 목록만** 배포 직전 빌드 스텝에서 DB 내용으로 생성합니다(아래 참고).
+
+## 공지사항 목록 빌드
+
+`notices/index.html` 의 목록은 Supabase `notices` 테이블에서 생성합니다. notices RLS 가
+`to authenticated` 라 공개 페이지에서 직접 못 읽으므로, **배포 직전** `build-notices.mjs`
+가 `service_role` 키로 DB 를 읽어 정적 HTML 의 `<!-- notices:start -->` ~ `<!-- notices:end -->`
+구간을 채웁니다. 노출 규칙은 RLS 와 동일(`is_active = true AND published_at <= now()`,
+핀 우선·게시일 내림차순).
+
+```bash
+# 1) 환경변수 준비 (최초 1회)
+cp .dev.vars.example .dev.vars
+#   → .dev.vars 의 SUPABASE_SERVICE_ROLE_KEY 채우기
+#   (Supabase 대시보드 → Project Settings → API → service_role secret)
+
+# 2) 목록 생성
+npm run build
+```
+
+- `.dev.vars` 는 git/배포 산출물에서 제외됩니다. service_role 키는 **절대 커밋·노출 금지**.
+- 환경변수가 없으면 생성을 건너뛰고 기존(fallback) 목록이 그대로 남습니다 (CSS 만 고칠 때 안전).
+- 공지를 새로 올리면(대시보드) **재배포해야 웹 목록에 반영**됩니다. 앱은 별개로 실시간 조회.
 
 ## 로컬 미리보기
 
 ```bash
-# 어떤 정적 서버든 OK
-python3 -m http.server 8000
-# → http://localhost:8000
+npm run preview   # = python3 -m http.server 8000 → http://localhost:8000
 ```
 
-## Cloudflare Pages 셋업 (최초 1회)
+## 배포
 
-1. https://dash.cloudflare.com → 가입/로그인
-2. 좌측 메뉴 **Workers & Pages** → **Create application** → **Pages** 탭 → **Connect to Git**
-3. GitHub 인증 → 이 레포(`popolog-pages`) 선택
-4. 빌드 설정:
-   - Framework preset: **None**
-   - Build command: 비워두기
-   - Build output directory: `/` (또는 비워두기)
-5. **Save and Deploy**
-6. 수십 초 후 `https://popolog-pages.pages.dev` 같은 URL 발급
-7. 메인 브랜치 push 마다 자동 재배포
+`wrangler` 로 배포합니다. 공지 목록 생성(빌드) → 업로드를 한 번에:
+
+```bash
+npm run deploy   # = npm run build && wrangler deploy
+```
+
+- `npm run deploy` 는 로컬에 `.dev.vars`(service_role 키)가 있어야 공지를 최신으로 생성합니다.
+- 업로드 제외 파일은 `.assetsignore` 참고 (`scripts/`, `package.json`, `.dev.vars*` 등은 산출물에서 제외).
+
+> Git 연동 Cloudflare Pages 를 쓸 경우: 빌드 설정의 **Build command** 를 `npm run build`,
+> **Output directory** 를 `/` 로 두고, 프로젝트 환경변수에 `SUPABASE_URL` /
+> `SUPABASE_SERVICE_ROLE_KEY` 를 등록하면 push 마다 자동으로 목록이 갱신됩니다.
 
 ## URL 매핑
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PopoLog 서비스 업데이트, 점검 안내, 이벤트 소식을 확인할 수 있는 공지사항입니다." />
+  <meta name="color-scheme" content="light" />
+  <title>공지사항 | PopoLog</title>
+  <link rel="icon" type="image/webp" href="../assets/lg_popo_square.webp" />
+  <link rel="apple-touch-icon" href="../assets/lg_popo_square.webp" />
+  <link rel="stylesheet" href="../style.css?v=notices-20260603-help-polish" />
+</head>
+<body class="notices-page">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header notices-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="PopoLog 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../assets/lg_popo_circle.webp" alt="" />
+        </span>
+        <span>PopoLog</span>
+      </a>
+
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="/">홈</a></li>
+          <li><a class="nav-link is-active" href="/notices/" aria-current="page">공지사항</a></li>
+          <li><a class="nav-link" href="/privacy">개인정보처리방침</a></li>
+          <li><a class="nav-link" href="/terms">이용약관</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="notices-hero" aria-labelledby="notices-title">
+      <div class="notices-hero-inner">
+        <div class="notices-hero-copy">
+          <h1 id="notices-title">공지사항</h1>
+          <p>PopoLog의 서비스 업데이트, 점검 안내, 이벤트 소식 등<br />다양한 정보를 확인하실 수 있습니다.</p>
+        </div>
+        <img class="notices-hero-image" src="../assets/bg_notices_banner.webp?v=notices-20260602" alt="강아지와 고양이가 함께 있는 공지사항 배너" />
+      </div>
+    </section>
+
+    <section class="notices-content" aria-label="공지사항 목록">
+      <div class="notice-tools">
+        <label class="notice-search">
+          <span aria-hidden="true"></span>
+          <input type="search" placeholder="공지사항 검색" aria-label="공지사항 검색" />
+        </label>
+
+        <div class="notice-filters" aria-label="공지사항 분류">
+          <button class="is-selected" type="button">전체</button>
+          <button type="button">서비스</button>
+          <button type="button">업데이트</button>
+          <button type="button">점검</button>
+          <button type="button">이벤트</button>
+        </div>
+      </div>
+
+      <div class="notice-list-wrap">
+        <table class="notice-table">
+          <caption>공지사항 목록</caption>
+          <thead>
+            <tr>
+              <th scope="col">구분</th>
+              <th scope="col">제목</th>
+              <th scope="col">등록일</th>
+              <th scope="col"><span class="sr-only">상세</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- notices:start — build-notices.mjs 가 빌드 시 DB에서 자동 생성. 직접 편집 금지 -->
+            <tr>
+              <td><span class="notice-badge badge-service">서비스</span></td>
+              <td><a class="notice-title" href="https://popolog.co.kr/notices/v0-1-welcome"><span class="notice-pin" aria-hidden="true"></span>PopoLog 베타에 오신 걸 환영해요</a></td>
+              <td>2026.05.25</td>
+              <td><span class="notice-arrow" aria-hidden="true"></span></td>
+            </tr>
+            <!-- notices:end -->
+          </tbody>
+        </table>
+      </div>
+
+      <nav class="notice-pagination" aria-label="공지사항 페이지">
+        <a href="#" aria-label="이전 페이지"></a>
+        <strong aria-current="page">1</strong>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#" aria-label="다음 페이지"></a>
+      </nav>
+
+      <section class="notice-help" aria-label="고객 지원">
+        <img src="../assets/bg_bottom_home.webp" alt="" aria-hidden="true" />
+        <div>
+          <h2>궁금한 점이 있으신가요?</h2>
+          <p>문의가 필요하시면 편하게 연락해 주세요.</p>
+        </div>
+        <div class="notice-help-actions">
+          <!--
+          <a class="btn btn-primary" href="/notices/v0-1-welcome.html">자주 묻는 질문 보기 <span aria-hidden="true">›</span></a>
+          -->
+          <a class="btn btn-ghost" href="mailto:hiwhwnsgh@gmail.com">1:1 문의하기</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer notices-footer">
+    <div class="footer-inner home-footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="PopoLog 홈">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="../assets/lg_popo_circle.webp" alt="" />
+          </span>
+          <span>PopoLog</span>
+        </a>
+        <p>반려동물의 일상·건강·추억을 가족과 함께 기록해요.</p>
+        <p class="footer-copy">© <span id="currentYear">2026</span> PopoLog. All rights reserved.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>정책</h4>
+        <a href="/privacy">개인정보처리방침</a>
+        <a href="/terms">이용약관</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>고객 지원</h4>
+        <a href="/notices/">공지사항</a>
+        <!--
+        <a href="/notices/v0-1-welcome.html">자주 묻는 질문</a>
+        -->
+      </div>
+
+      <div class="footer-col">
+        <h4>문의</h4>
+        <a class="footer-mail" href="mailto:hiwhwnsgh@gmail.com"><img src="../assets/icon-feat-mail.svg" alt="" aria-hidden="true" />hiwhwnsgh@gmail.com</a>
+        <span>평일 09:00 - 18:00 (주말/공휴일 휴무)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const currentYearElement = document.getElementById("currentYear");
+    if (currentYearElement) {
+      currentYearElement.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>

@@ -9,3 +9,9 @@ node_modules/
 *.md
 wrangler.jsonc
 .assetsignore
+scripts/
+package.json
+package-lock.json
+.dev.vars*
+.env*
+supabase/
