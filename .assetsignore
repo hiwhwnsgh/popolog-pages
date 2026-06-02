@@ -2,6 +2,7 @@
 .gitignore
 .idea/
 .vscode/
+.claude/
 .DS_Store
 .wrangler/
 node_modules/
