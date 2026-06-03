@@ -1,0 +1,136 @@
+/* ───────────────────────────────────────────────────────────
+   사이트 공통 상단바 (Single Source of Truth)
+   모든 페이지(index, notices, privacy, terms, 공지 상세)가
+   이 파일 하나만 참조한다. 셀렉터는 `.site-header` 하위로 한정해
+   각 페이지의 기존 style.css / 인라인 <style> 보다 우선 적용된다.
+   링크는 반드시 페이지의 다른 스타일시트 "뒤"에 둘 것.
+   ─────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: static;
+  min-height: 72px;
+  border-bottom: 1px solid rgba(243, 216, 207, 0.8);
+  background: rgba(255, 248, 245, 0.86);
+}
+
+.site-header .header-inner {
+  width: min(100% - 32px, 1080px);
+  min-height: 72px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: #2f241e;
+  text-decoration: none;
+}
+
+.site-header .brand-mark {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(255, 122, 102, 0.28);
+}
+
+.site-header .brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.site-header .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header .nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #756966;
+  font-size: 0.94rem;
+  font-weight: 650;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.site-header .nav-link:hover {
+  background: #ffe1d9;
+  color: #e85f4f;
+  transform: translateY(-1px);
+}
+
+.site-header .nav-link.is-active {
+  background: #ffe1d9;
+  color: #e85f4f;
+  font-weight: 750;
+}
+
+/* 좁은 화면: 로고 아이콘 + 미니멀 텍스트 메뉴를 한 줄로 (원래 탑바 스타일) */
+@media (max-width: 720px) {
+  .site-header {
+    min-height: 58px;
+  }
+
+  .site-header .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 58px;
+    padding: 0;
+    gap: 12px;
+  }
+
+  .site-header .nav-list {
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .site-header .nav-link {
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #5b4f49;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .site-header .nav-link:hover {
+    background: transparent;
+    color: #e85f4f;
+    transform: none;
+  }
+
+  /* 현재 페이지는 코랄 색으로 표시 (세 번째 이미지 참고) */
+  .site-header .nav-link.is-active {
+    background: transparent;
+    color: #e85f4f;
+    font-weight: 800;
+  }
+}

@@ -1,0 +1,93 @@
+/* ───────────────────────────────────────────────────────────
+   사이트 공통 하단 영역 (Single Source of Truth)
+   개인정보처리방침 페이지의 푸터 디자인을 기준으로 통일한다.
+   모든 페이지가 이 파일 하나만 참조하며, 셀렉터는 `.site-footer`
+   하위로 한정해 각 페이지의 기존 style.css / 인라인 <style> 보다
+   우선 적용된다. 링크는 다른 스타일시트 "뒤"에 둘 것.
+   ─────────────────────────────────────────────────────────── */
+
+.site-footer {
+  border-top: 1px solid rgba(138, 106, 88, 0.15);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 213, 196, 0.32) 0 16%, transparent 34%),
+    rgba(255, 250, 247, 0.9);
+}
+
+.site-footer .footer-inner {
+  width: min(100% - 32px, 1080px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.site-footer .footer-brand {
+  color: #f36f61;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+.site-footer .footer-inner p,
+.site-footer .footer-inner li,
+.site-footer .copyright {
+  color: #6f5c53;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.site-footer .footer-inner a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer .footer-inner h3 {
+  margin: 0 0 12px;
+  color: #2f241e;
+  font-size: 13px;
+}
+
+.site-footer .footer-inner ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer .footer-inner ul a:hover {
+  color: #f36f61;
+}
+
+.site-footer .copyright {
+  width: min(100% - 32px, 1080px);
+  margin: 0 auto;
+  padding: 18px 0 calc(30px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(138, 106, 88, 0.1);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .site-footer .footer-inner {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer .footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 390px) {
+  .site-footer .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 34px 0;
+  }
+
+  .site-footer .footer-brand {
+    font-size: 22px;
+  }
+}

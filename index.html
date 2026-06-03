@@ -9,6 +9,8 @@
   <link rel="icon" type="image/webp" href="assets/lg_popo_square.webp" />
   <link rel="apple-touch-icon" href="assets/lg_popo_square.webp" />
   <link rel="stylesheet" href="style.css?v=home-mobile-sections" />
+  <link rel="stylesheet" href="header.css?v=unify-3" />
+  <link rel="stylesheet" href="footer.css?v=unify-2" />
 </head>
 <body class="home">
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -17,9 +19,8 @@
     <div class="header-inner">
       <a class="brand" href="/" aria-label="PopoLog 홈">
         <span class="brand-mark" aria-hidden="true">
-          <img src="assets/lg_popo_circle.webp" alt="" />
+          <img src="assets/lg_popo_square.webp" alt="" />
         </span>
-        <span>PopoLog</span>
       </a>
 
       <nav aria-label="주요 메뉴">
@@ -173,38 +174,37 @@
     </section>
   </main>
 
-  <footer class="site-footer home-footer">
-    <div class="footer-inner home-footer-inner">
-      <div class="footer-brand">
-        <a class="brand" href="/" aria-label="PopoLog 홈">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="assets/lg_popo_circle.webp" alt="" />
-          </span>
-          <span>PopoLog</span>
-        </a>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">PopoLog</div>
         <p>반려동물의 일상·건강·추억을 가족과 함께 기록해요.</p>
-        <p class="footer-copy">© <span id="currentYear">2026</span> PopoLog. All rights reserved.</p>
+        <p>© <span id="currentYear">2026</span> 준호네소프트웨어. All rights reserved.</p>
       </div>
-
-      <div class="footer-col">
-        <h4>정책</h4>
-        <a href="/privacy">개인정보처리방침</a>
-        <a href="/terms">이용약관</a>
+      <div>
+        <h3>정책</h3>
+        <ul>
+          <li><a href="/notices/">공지사항</a></li>
+          <li><a href="/privacy">개인정보 처리방침</a></li>
+          <li><a href="/terms">서비스 이용약관</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col">
-        <h4>고객 문의</h4>
-        <a href="/notices/">공지사항</a>
-        <a class="footer-mail" href="mailto:hiwhwnsgh@gmail.com"><img src="assets/icon-feat-mail.svg" alt="" aria-hidden="true" />hiwhwnsgh@gmail.com</a>
+      <div>
+        <h3>고객 문의</h3>
+        <ul>
+          <li><a href="mailto:hiwhwnsgh@gmail.com">hiwhwnsgh@gmail.com</a></li>
+        </ul>
       </div>
     </div>
+    <div class="container copyright">© <span id="currentYearFooter">2026</span> 준호네소프트웨어</div>
   </footer>
 
   <script>
-    const currentYearElement = document.getElementById("currentYear");
-    if (currentYearElement) {
-      currentYearElement.textContent = new Date().getFullYear();
-    }
+    const y = new Date().getFullYear();
+    const a = document.getElementById("currentYear");
+    const b = document.getElementById("currentYearFooter");
+    if (a) a.textContent = y;
+    if (b) b.textContent = y;
   </script>
 </body>
 </html>

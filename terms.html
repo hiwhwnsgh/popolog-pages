@@ -60,44 +60,6 @@
       margin: 0 auto;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      height: 56px;
-      border-bottom: 1px solid rgba(138, 106, 88, .08);
-      background: rgba(255, 250, 247, .86);
-      backdrop-filter: blur(18px);
-    }
-
-    .header-inner {
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-logo { width: 38px; height: 38px; border-radius: 8px; object-fit: contain; }
-
-    .nav-list {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 13px;
-      font-weight: 800;
-      color: #3e302a;
-    }
-    .nav-list a {
-      display: inline-flex;
-      align-items: center;
-      height: 34px;
-    }
-    .nav-list a:hover { color: var(--coral-deep); }
-
     .hero {
       position: relative;
       overflow: hidden;
@@ -395,58 +357,16 @@
     .terms-card a { color: var(--coral-deep); font-weight: 700; }
     .terms-card a:hover { text-decoration: underline; }
 
-    .site-footer {
-      border-top: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 12% 10%, rgba(255, 213, 196, .32) 0 16%, transparent 34%),
-        rgba(255, 250, 247, .9);
-    }
-
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      gap: 32px;
-      padding: 40px 0;
-    }
-
-    .footer-brand {
-      color: var(--coral-deep);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -.04em;
-      margin-bottom: 8px;
-    }
-
-    .footer-inner p, .footer-inner li, .copyright {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.75;
-    }
-
-    .footer-inner h3 { margin: 0 0 12px; font-size: 13px; }
-    .footer-inner ul { margin: 0; padding: 0; list-style: none; }
-    .footer-inner ul a:hover { color: var(--coral-deep); }
-
-    .copyright {
-      padding: 18px 0 30px;
-      border-top: 1px solid rgba(138,106,88,.1);
-      text-align: center;
-    }
-
     @media (max-width: 1024px) {
       .container { width: min(100% - 40px, var(--max)); }
       .hero-inner { grid-template-columns: 1fr 400px; gap: 32px; }
       .hero-visual img { width: 400px; height: auto; }
       .content-layout { grid-template-columns: 220px 1fr; gap: 18px; }
       .toc a { font-size: 12.5px; }
-      .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
     }
 
     @media (max-width: 860px) {
       .container { width: min(100% - 32px, var(--max)); }
-      .site-header { height: auto; }
-      .header-inner { height: 64px; }
-      .brand-logo { width: 36px; height: 36px; }
       .hero-inner { grid-template-columns: 1fr; gap: 18px; padding: 42px 0 28px; }
       .hero::before { left: 68%; top: 128px; width: 34px; height: 38px; opacity: .42; }
       .hero::after,
@@ -468,7 +388,6 @@
       .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; display: grid; }
       .toc a { min-height: 40px; font-size: 12.5px; background: rgba(255, 248, 243, .62); }
       .toc-help { margin: 16px 0 0; }
-      .footer-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     }
 
     @media (max-width: 640px) {
@@ -478,9 +397,6 @@
           linear-gradient(180deg, #fffaf7 0%, #fff8f3 46%, #ffffff 100%);
       }
       .container { width: min(100% - 28px, var(--max)); }
-      .header-inner { height: 58px; }
-      .brand-logo { width: 34px; height: 34px; }
-      .nav-list { gap: 16px; font-size: 12px; }
       .hero-inner { padding: 30px 0 20px; }
       .hero-title { font-size: 36px; letter-spacing: -.055em; }
       .hero-desc { font-size: 14.5px; line-height: 1.72; }
@@ -501,9 +417,6 @@
       .terms-card::after { right: 16px; top: 16px; opacity: .1; }
       .terms-card h2 { font-size: 19px; }
       .terms-card p, .terms-card li { font-size: 13.5px; line-height: 1.72; }
-      .footer-inner { grid-template-columns: 1fr; gap: 22px; padding: 34px 0; }
-      .footer-brand { font-size: 22px; }
-      .copyright { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
     }
 
     @media (max-width: 390px) {
@@ -513,21 +426,25 @@
       .terms-card { padding: 18px; }
     }
   </style>
+  <link rel="stylesheet" href="header.css?v=unify-3" />
+  <link rel="stylesheet" href="footer.css?v=unify-2" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 이동</a>
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="/" aria-label="PopoLog 홈">
-        <img class="brand-logo" src="assets/lg_popo_square.webp" alt="PopoLog" />
+      <a class="brand" href="/" aria-label="PopoLog 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/lg_popo_square.webp" alt="" />
+        </span>
       </a>
       <nav aria-label="주요 메뉴">
         <ul class="nav-list">
-          <li><a href="/">홈</a></li>
-          <li><a href="/notices/">공지사항</a></li>
-          <li><a href="/privacy">개인정보처리방침</a></li>
-          <li><a href="/terms">이용약관</a></li>
+          <li><a class="nav-link" href="/">홈</a></li>
+          <li><a class="nav-link" href="/notices/">공지사항</a></li>
+          <li><a class="nav-link" href="/privacy">개인정보처리방침</a></li>
+          <li><a class="nav-link is-active" href="/terms" aria-current="page">이용약관</a></li>
         </ul>
       </nav>
     </div>
