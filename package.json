@@ -8,5 +8,8 @@
     "build": "node --env-file-if-exists=.dev.vars scripts/build-notices.mjs",
     "deploy": "npm run build && wrangler deploy",
     "preview": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "wrangler": "^4.97.0"
   }
 }
