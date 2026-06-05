@@ -93,7 +93,7 @@
           </thead>
           <tbody>
             <!-- notices:start — build-notices.mjs 가 빌드 시 DB에서 자동 생성. 직접 편집 금지 -->
-            <tr data-category="서비스">
+            <tr data-category="서비스" data-href="https://popolog.co.kr/notices/v0-1-welcome">
               <td><span class="notice-badge badge-service">서비스</span></td>
               <td><a class="notice-title" href="https://popolog.co.kr/notices/v0-1-welcome"><span class="notice-pin" aria-hidden="true"></span>PopoLog 베타에 오신 걸 환영해요</a></td>
               <td>2026.05.25</td>
@@ -272,6 +272,44 @@
       renderNotices();
     });
 
+    const cardMedia = window.matchMedia("(max-width: 640px)");
+
+    function syncCardLinks() {
+      noticeRows.forEach((row) => {
+        const link = row.querySelector(".notice-title");
+        const href = row.dataset.href || link?.href;
+        if (!href) return;
+        row.dataset.href = href;
+        if (cardMedia.matches) {
+          row.tabIndex = 0;
+          row.setAttribute("role", "link");
+          row.setAttribute("aria-label", link?.textContent.trim() || "공지사항 상세 보기");
+        } else {
+          row.removeAttribute("tabindex");
+          row.removeAttribute("role");
+          row.removeAttribute("aria-label");
+        }
+      });
+    }
+
+    noticeBody?.addEventListener("click", (event) => {
+      if (!cardMedia.matches) return;
+      const row = event.target.closest("tr[data-href]");
+      if (!row || event.target.closest("a, button")) return;
+      window.location.href = row.dataset.href;
+    });
+
+    noticeBody?.addEventListener("keydown", (event) => {
+      if (!cardMedia.matches) return;
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const row = event.target.closest("tr[data-href]");
+      if (!row) return;
+      event.preventDefault();
+      window.location.href = row.dataset.href;
+    });
+
+    cardMedia.addEventListener?.("change", syncCardLinks);
+    syncCardLinks();
     renderNotices();
   </script>
 </body>

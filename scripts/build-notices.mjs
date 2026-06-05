@@ -58,9 +58,10 @@ function rowHtml(notice) {
   const pin = notice.is_pinned
     ? '<span class="notice-pin" aria-hidden="true"></span>'
     : "";
-  return `            <tr data-category="${cat.label}">
+  const href = escapeHtml(notice.content_url);
+  return `            <tr data-category="${cat.label}" data-href="${href}">
               <td><span class="notice-badge ${cat.cls}">${cat.label}</span></td>
-              <td><a class="notice-title" href="${escapeHtml(notice.content_url)}">${pin}${escapeHtml(notice.title)}</a></td>
+              <td><a class="notice-title" href="${href}">${pin}${escapeHtml(notice.title)}</a></td>
               <td>${formatDate(notice.published_at)}</td>
               <td><span class="notice-arrow" aria-hidden="true"></span></td>
             </tr>`;
