@@ -68,15 +68,15 @@
       <div class="notice-tools">
         <label class="notice-search">
           <span aria-hidden="true"></span>
-          <input type="search" placeholder="공지사항 검색" aria-label="공지사항 검색" />
+          <input id="noticeSearch" type="search" placeholder="공지사항 검색" aria-label="공지사항 검색" autocomplete="off" />
         </label>
 
         <div class="notice-filters" aria-label="공지사항 분류">
-          <button class="is-selected" type="button">전체</button>
-          <button type="button">서비스</button>
-          <button type="button">업데이트</button>
-          <button type="button">점검</button>
-          <button type="button">이벤트</button>
+          <button class="is-selected" type="button" data-category="all" aria-pressed="true">전체</button>
+          <button type="button" data-category="서비스" aria-pressed="false">서비스</button>
+          <button type="button" data-category="업데이트" aria-pressed="false">업데이트</button>
+          <button type="button" data-category="점검" aria-pressed="false">점검</button>
+          <button type="button" data-category="이벤트" aria-pressed="false">이벤트</button>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
           </thead>
           <tbody>
             <!-- notices:start — build-notices.mjs 가 빌드 시 DB에서 자동 생성. 직접 편집 금지 -->
-            <tr>
+            <tr data-category="서비스">
               <td><span class="notice-badge badge-service">서비스</span></td>
               <td><a class="notice-title" href="https://popolog.co.kr/notices/v0-1-welcome"><span class="notice-pin" aria-hidden="true"></span>PopoLog 베타에 오신 걸 환영해요</a></td>
               <td>2026.05.25</td>
@@ -104,7 +104,7 @@
         </table>
       </div>
 
-      <nav class="notice-pagination" aria-label="공지사항 페이지">
+      <nav class="notice-pagination" aria-label="공지사항 페이지" hidden>
         <a href="#" aria-label="이전 페이지"></a>
         <strong aria-current="page">1</strong>
         <a href="#">2</a>
@@ -161,6 +161,118 @@
     const b = document.getElementById("currentYearFooter");
     if (a) a.textContent = y;
     if (b) b.textContent = y;
+
+    const searchInput = document.getElementById("noticeSearch");
+    const filterButtons = [...document.querySelectorAll(".notice-filters button")];
+    const noticeBody = document.querySelector(".notice-table tbody");
+    const pagination = document.querySelector(".notice-pagination");
+    const pageSize = 10;
+    let currentCategory = "all";
+    let currentPage = 1;
+
+    const noticeRows = noticeBody
+      ? [...noticeBody.querySelectorAll("tr")].filter((row) => !row.querySelector(".notice-empty"))
+      : [];
+    const emptyRow = document.createElement("tr");
+    emptyRow.className = "notice-filter-empty";
+    emptyRow.hidden = true;
+    emptyRow.innerHTML = '<td colspan="4" class="notice-empty">조건에 맞는 공지사항이 없습니다.</td>';
+    if (noticeBody) noticeBody.appendChild(emptyRow);
+
+    const normalize = (value) => value.trim().toLocaleLowerCase("ko-KR");
+    const getRowCategory = (row) => row.dataset.category || row.querySelector(".notice-badge")?.textContent.trim() || "";
+    const getRowText = (row) => normalize(row.textContent || "");
+
+    function renderPagination(totalPages) {
+      if (!pagination) return;
+      pagination.hidden = totalPages <= 1;
+      if (totalPages <= 1) {
+        pagination.replaceChildren();
+        return;
+      }
+
+      const makeButton = (label, page, options = {}) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = label;
+        button.dataset.page = String(page);
+        if (options.label) button.setAttribute("aria-label", options.label);
+        if (options.current) {
+          button.className = "is-current";
+          button.setAttribute("aria-current", "page");
+        }
+        button.disabled = options.disabled || false;
+        return button;
+      };
+
+      const items = [
+        makeButton("", Math.max(1, currentPage - 1), {
+          label: "이전 페이지",
+          disabled: currentPage === 1,
+        }),
+      ];
+
+      for (let page = 1; page <= totalPages; page += 1) {
+        items.push(makeButton(String(page), page, { current: page === currentPage }));
+      }
+
+      items.push(
+        makeButton("", Math.min(totalPages, currentPage + 1), {
+          label: "다음 페이지",
+          disabled: currentPage === totalPages,
+        }),
+      );
+
+      pagination.replaceChildren(...items);
+    }
+
+    function renderNotices() {
+      if (!noticeRows.length) return;
+
+      const query = normalize(searchInput?.value || "");
+      const matchedRows = noticeRows.filter((row) => {
+        const categoryMatches = currentCategory === "all" || getRowCategory(row) === currentCategory;
+        const searchMatches = !query || getRowText(row).includes(query);
+        return categoryMatches && searchMatches;
+      });
+      const totalPages = Math.max(1, Math.ceil(matchedRows.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * pageSize;
+      const visibleRows = new Set(matchedRows.slice(start, start + pageSize));
+
+      noticeRows.forEach((row) => {
+        row.hidden = !visibleRows.has(row);
+      });
+      emptyRow.hidden = matchedRows.length > 0;
+      renderPagination(totalPages);
+    }
+
+    searchInput?.addEventListener("input", () => {
+      currentPage = 1;
+      renderNotices();
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentCategory = button.dataset.category || "all";
+        currentPage = 1;
+        filterButtons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("is-selected", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+        renderNotices();
+      });
+    });
+
+    pagination?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-page]");
+      if (!button || button.disabled) return;
+      currentPage = Number(button.dataset.page) || 1;
+      renderNotices();
+    });
+
+    renderNotices();
   </script>
 </body>
 </html>
