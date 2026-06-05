@@ -19,6 +19,8 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TARGET = join(ROOT, "notices", "index.html");
+const SITEMAP_TARGET = join(ROOT, "sitemap.xml");
+const SITE_ORIGIN = "https://popolog.co.kr";
 
 const START = "<!-- notices:start — build-notices.mjs 가 빌드 시 DB에서 자동 생성. 직접 편집 금지 -->";
 const END = "<!-- notices:end -->";
@@ -52,13 +54,41 @@ function escapeHtml(s) {
     .replaceAll('"', "&quot;");
 }
 
+function escapeXml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function formatDateOnly(iso) {
+  const parts = dateFmt.formatToParts(new Date(iso));
+  const get = (t) => parts.find((p) => p.type === t)?.value ?? "";
+  return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+function canonicalNoticeUrl(rawUrl) {
+  const url = new URL(rawUrl, SITE_ORIGIN);
+  if (url.origin !== SITE_ORIGIN || !url.pathname.startsWith("/notices/")) {
+    throw new Error(`허용되지 않는 공지 URL: ${rawUrl}`);
+  }
+  url.hash = "";
+  url.search = "";
+  if (url.pathname.endsWith(".html")) {
+    url.pathname = url.pathname.slice(0, -5);
+  }
+  return url.href;
+}
+
 function rowHtml(notice) {
   const cat = CATEGORY[notice.category];
   if (!cat) throw new Error(`알 수 없는 category: ${notice.category} (id=${notice.id})`);
   const pin = notice.is_pinned
     ? '<span class="notice-pin" aria-hidden="true"></span>'
     : "";
-  const href = escapeHtml(notice.content_url);
+  const href = escapeHtml(canonicalNoticeUrl(notice.content_url));
   return `            <tr data-category="${cat.label}" data-href="${href}">
               <td><span class="notice-badge ${cat.cls}">${cat.label}</span></td>
               <td><a class="notice-title" href="${href}">${pin}${escapeHtml(notice.title)}</a></td>
@@ -88,6 +118,41 @@ async function fetchNotices(baseUrl, key) {
   return res.json();
 }
 
+function sitemapXml(notices) {
+  const today = formatDateOnly(new Date().toISOString());
+  const staticPages = [
+    { loc: `${SITE_ORIGIN}/`, lastmod: today, changefreq: "weekly", priority: "1.0" },
+    { loc: `${SITE_ORIGIN}/notices/`, lastmod: today, changefreq: "weekly", priority: "0.7" },
+    { loc: `${SITE_ORIGIN}/privacy`, lastmod: today, changefreq: "yearly", priority: "0.4" },
+    { loc: `${SITE_ORIGIN}/terms`, lastmod: today, changefreq: "yearly", priority: "0.4" },
+  ];
+  const noticePages = notices.map((notice) => ({
+    loc: canonicalNoticeUrl(notice.content_url),
+    lastmod: formatDateOnly(notice.published_at),
+    changefreq: "monthly",
+    priority: "0.6",
+  }));
+  const pages = [...staticPages, ...noticePages].filter(
+    (page, index, all) => all.findIndex((item) => item.loc === page.loc) === index,
+  );
+  const urls = pages
+    .map(
+      (page) => `  <url>
+    <loc>${escapeXml(page.loc)}</loc>
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`,
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
 async function main() {
   const baseUrl = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -115,7 +180,8 @@ async function main() {
   const next = `${before}\n${rows}\n            ${after}`;
 
   await writeFile(TARGET, next, "utf8");
-  console.log(`[build-notices] 공지 ${notices.length}건 생성 완료 → ${TARGET}`);
+  await writeFile(SITEMAP_TARGET, sitemapXml(notices), "utf8");
+  console.log(`[build-notices] 공지 ${notices.length}건 및 sitemap 생성 완료 → ${TARGET}`);
 }
 
 main().catch((err) => {
