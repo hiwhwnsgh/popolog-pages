@@ -521,11 +521,6 @@ button:focus-visible {
   background: #fdeee7;
 }
 
-/* 구분선 역할: 앱 미리보기 — 흰색 */
-.home-preview {
-  background: #ffffff;
-}
-
 /* 묶음 2 (특별한 이유 + CTA) — 따뜻한 크림 */
 .home-why {
   background: #fdeee7;
@@ -583,6 +578,60 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 30px;
+}
+
+/* 앱 다운로드 배지 — 스토어 스타일의 짙은 버튼 (아이콘 + 2줄 텍스트) */
+.store-badges {
+  gap: 14px;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 56px;
+  padding: 10px 20px;
+  border-radius: 16px;
+  background: #1c1413;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 12px 26px rgba(80, 50, 42, 0.24);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.store-badge:hover {
+  background: #2a1f1d;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(80, 50, 42, 0.32);
+}
+
+.store-badge-ico {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+}
+
+.store-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.18;
+  text-align: left;
+}
+
+.store-badge-top {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
+}
+
+.store-badge-name {
+  font-size: 1.12rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
 }
 
 /* Hero 비주얼 — bg_hero.webp 단일 이미지 (펫 + 기록 카드 일체형) */
@@ -759,58 +808,6 @@ button:focus-visible {
 
 .heart-a { top: 33%; left: -22px; transform: rotate(-10deg); }
 .heart-b { bottom: -3%; right: 28%; transform: rotate(8deg); }
-
-/* ── App preview ── */
-/* 텍스트(좌) + 폰 목업(우) 2단 구성. 폰들은 섹션 하단으로 흘러내리듯
-   윗부분만 보여주고 아래는 .preview-phones의 overflow로 잘라낸다. */
-.home-preview {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) 1.25fr;
-  align-items: center;
-  column-gap: clamp(28px, 4vw, 60px);
-  overflow: hidden;
-}
-
-.preview-copy {
-  max-width: 480px;
-}
-
-.preview-copy h2 {
-  margin: 0 0 14px;
-  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
-  line-height: 1.32;
-  letter-spacing: -0.04em;
-}
-
-.preview-copy p {
-  margin: 0;
-  color: var(--color-muted);
-}
-
-.preview-phones {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: start;
-  gap: clamp(12px, 1.8vw, 22px);
-  /* 폰 화면비(폭 대비 약 2.17배 높이)를 기준으로 위쪽 절반만 노출되게 잘라낸다 */
-  aspect-ratio: 3.25;
-  overflow: hidden;
-}
-
-.phone-mock {
-  padding: 10px 10px 0;
-  border-radius: 34px 34px 0 0;
-  background: #2d2523;
-  box-shadow: 0 22px 50px rgba(94, 63, 55, 0.18);
-}
-
-.phone-mock-shot {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 26px 26px 0 0;
-}
-
 
 /* ── Why ── */
 /* 제목(왼쪽) + 4개 카드(오른쪽 가로 행) 2단 구성 */
@@ -1598,15 +1595,6 @@ html.embed-app .notices-content {
     grid-template-columns: 1fr;
   }
 
-  .home-preview {
-    grid-template-columns: 1fr;
-    row-gap: clamp(24px, 4vw, 36px);
-  }
-
-  .preview-phones {
-    margin-top: 4px;
-  }
-
   .home-why {
     grid-template-columns: 1fr;
     row-gap: clamp(20px, 3vw, 28px);
@@ -1841,59 +1829,6 @@ html.embed-app .notices-content {
   }
 
   .story-collage { grid-auto-rows: 96px; }
-
-  .home-preview {
-    position: relative;
-    padding-block: 42px 34px;
-    background:
-      linear-gradient(180deg, #fff 0%, #fff8f4 100%);
-    row-gap: 24px;
-  }
-
-  .preview-copy {
-    max-width: 100%;
-  }
-
-  .preview-copy h2 {
-    margin-bottom: 10px;
-    font-size: clamp(1.62rem, 7vw, 2rem);
-    line-height: 1.28;
-  }
-
-  .preview-copy p {
-    font-size: 0.94rem;
-    line-height: 1.72;
-  }
-
-  .preview-phones {
-    display: flex;
-    gap: 12px;
-    aspect-ratio: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-inline: -24px;
-    padding: 4px 24px 12px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .preview-phones::-webkit-scrollbar {
-    display: none;
-  }
-
-  .phone-mock {
-    flex: 0 0 132px;
-    height: 250px;
-    overflow: hidden;
-    scroll-snap-align: start;
-    padding: 8px;
-    border-radius: 28px;
-    box-shadow: 0 14px 32px rgba(94, 63, 55, 0.16);
-  }
-
-  .phone-mock-shot {
-    border-radius: 21px;
-  }
 
   .home-cta-band {
     padding-block: 54px 48px;
