@@ -70,6 +70,13 @@
       color: var(--color-primary-dark);
       user-select: all;
     }
+    /* 코드는 기본 블러 — 탭하면 보인다(평문 노출 최소화). */
+    .iv-code.is-masked {
+      filter: blur(9px);
+      cursor: pointer;
+      user-select: none;
+    }
+    .iv-code-hint { font-size: 0.78rem; color: var(--color-muted); margin: 6px 0 0; }
     .iv-actions {
       display: flex;
       flex-direction: column;
@@ -91,7 +98,8 @@
     <!-- 코드가 있으면 JS 가 노출. -->
     <div class="iv-code-box" id="codeBox" hidden>
       <p class="iv-code-label">초대 코드</p>
-      <p class="iv-code" id="codeText"></p>
+      <p class="iv-code is-masked" id="codeText"></p>
+      <p class="iv-code-hint" id="codeHint">탭하면 코드가 보여요</p>
     </div>
 
     <div class="iv-actions">
@@ -110,8 +118,15 @@
     var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 12);
 
     if (code) {
-      document.getElementById("codeText").textContent = code;
+      var codeText = document.getElementById("codeText");
+      codeText.textContent = code;
       document.getElementById("codeBox").hidden = false;
+      // 코드는 기본 블러 — 탭하면 보였다 숨겼다 토글(평문 상시 노출 최소화).
+      var codeHint = document.getElementById("codeHint");
+      codeText.addEventListener("click", function () {
+        var masked = codeText.classList.toggle("is-masked");
+        codeHint.textContent = masked ? "탭하면 코드가 보여요" : "탭하면 다시 숨겨요";
+      });
       // 커스텀 스킴으로 앱 진입. 사용자 탭에서만 실행해 미설치 시 에러 팝업을 피한다
       // (자동 리다이렉트는 일부 브라우저에서 "주소를 열 수 없습니다" 를 띄움).
       var openApp = document.getElementById("openApp");
