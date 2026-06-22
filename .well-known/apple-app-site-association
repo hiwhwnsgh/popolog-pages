@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6YZKD8P4RL.org.popolog.app.PopoLog",
+        "paths": ["/invite", "/invite/*"]
+      }
+    ]
+  }
+}
