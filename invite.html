@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="포포로그 가족 초대 — 초대 코드로 가족에 합류하세요." />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="포포로그(PopoLog)" />
+  <meta property="og:title" content="포포로그 가족 초대" />
+  <meta property="og:description" content="초대 코드로 포포로그 가족에 합류하세요." />
+  <meta property="og:url" content="https://popolog.co.kr/invite" />
+  <meta property="og:image" content="https://popolog.co.kr/assets/bg_hero.webp" />
+  <title>포포로그 가족 초대</title>
+  <link rel="canonical" href="https://popolog.co.kr/invite" />
+  <link rel="icon" type="image/webp" href="assets/lg_popo_square.webp" />
+  <link rel="apple-touch-icon" href="assets/lg_popo_square.webp" />
+  <link rel="stylesheet" href="style.css?v=app-download" />
+  <style>
+    /* /download 페이지와 같은 미니멀 톤. 색은 사이트 토큰(--color-*) 재사용. */
+    .iv-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 18px;
+      padding: 40px 24px;
+      box-sizing: border-box;
+    }
+    .iv-logo {
+      width: 84px;
+      height: 84px;
+      border-radius: 22px;
+      box-shadow: 0 14px 30px rgba(80, 50, 42, 0.22);
+    }
+    .iv-title {
+      margin: 4px 0 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+    }
+    .iv-desc {
+      margin: 0;
+      max-width: 22rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-muted);
+    }
+    .iv-code-box {
+      margin: 6px 0 2px;
+      padding: 16px 28px;
+      background: var(--color-surface-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+    .iv-code-label { font-size: 0.8rem; color: var(--color-muted); margin: 0 0 4px; }
+    .iv-code {
+      margin: 0;
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      padding-left: 0.32em; /* letter-spacing 보정 */
+      color: var(--color-primary-dark);
+      user-select: all;
+    }
+    .iv-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 22rem;
+    }
+    .iv-actions .btn { width: 100%; justify-content: center; }
+    .iv-hint { font-size: 0.85rem; color: var(--color-muted); margin: 4px 0 0; line-height: 1.6; }
+    .iv-hint b { color: var(--color-text); }
+  </style>
+</head>
+<body>
+  <main class="iv-wrap">
+    <img class="iv-logo" src="assets/lg_popo_square.webp" alt="포포로그 로고" />
+    <h1 class="iv-title">가족 초대를 받았어요 🐾</h1>
+    <p class="iv-desc">초대 코드로 포포로그 가족에 합류할 수 있어요.</p>
+
+    <!-- 코드가 있으면 JS 가 노출. -->
+    <div class="iv-code-box" id="codeBox" hidden>
+      <p class="iv-code-label">초대 코드</p>
+      <p class="iv-code" id="codeText"></p>
+    </div>
+
+    <div class="iv-actions">
+      <a class="btn btn-primary" id="openApp" href="#" hidden>앱에서 열기</a>
+      <!-- 설치는 /download(플랫폼 감지 → 스토어 자동 이동) 에 위임. 스토어 URL 단일 출처. -->
+      <a class="btn btn-ghost" href="/download">포포로그 설치하기</a>
+    </div>
+
+    <p class="iv-hint" id="hint">설치 후 앱을 열고 <b>가족 공유 → 초대 코드 입력</b>에서 코드를 넣어주세요.</p>
+  </main>
+
+  <script>
+    // ?code= 파싱 — 코드 문자셋(대문자+숫자)만 허용, 길이 제한으로 안전 정규화.
+    var params = new URLSearchParams(location.search);
+    var raw = params.get("code") || "";
+    var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 12);
+
+    if (code) {
+      document.getElementById("codeText").textContent = code;
+      document.getElementById("codeBox").hidden = false;
+      // 커스텀 스킴으로 앱 진입. 사용자 탭에서만 실행해 미설치 시 에러 팝업을 피한다
+      // (자동 리다이렉트는 일부 브라우저에서 "주소를 열 수 없습니다" 를 띄움).
+      var openApp = document.getElementById("openApp");
+      openApp.setAttribute("href", "popolog://invite?code=" + code);
+      openApp.hidden = false;
+    } else {
+      // 코드 없이 들어온 경우: 설치 안내만.
+      document.getElementById("hint").textContent =
+        "포포로그를 설치하고 가족에게 받은 초대 코드를 입력해 주세요.";
+    }
+  </script>
+</body>
+</html>
