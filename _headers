@@ -1,0 +1,5 @@
+# Cloudflare 정적 자산 응답 헤더 규칙.
+# apple-app-site-association 은 확장자가 없어 기본 content-type 이 비어 나간다.
+# iOS Universal Links 는 application/json 으로 서빙되길 권장하므로 명시한다.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
