@@ -21,8 +21,9 @@
   <link rel="icon" type="image/webp" href="assets/lg_popo_square.webp" />
   <link rel="apple-touch-icon" href="assets/lg_popo_square.webp" />
   <link rel="stylesheet" href="style.css?v=app-download" />
-  <link rel="stylesheet" href="header.css?v=unify-3" />
+  <link rel="stylesheet" href="header.css?v=unify-4" />
   <link rel="stylesheet" href="footer.css?v=unify-2" />
+  <script src="header.js" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,8 +69,16 @@
         <ul class="nav-list">
           <li><a class="nav-link is-active" href="/" aria-current="page">홈</a></li>
           <li><a class="nav-link" href="/notices/">공지사항</a></li>
-          <li><a class="nav-link" href="/privacy">개인정보처리방침</a></li>
-          <li><a class="nav-link" href="/terms">이용약관</a></li>
+          <li><a class="nav-link" href="/guide">사용 가이드</a></li>
+          <li class="nav-has-menu">
+            <details class="nav-more-d">
+              <summary class="nav-link nav-more">더보기 <span class="nav-more-caret" aria-hidden="true"></span></summary>
+              <ul class="nav-menu">
+                <li><a href="/privacy">개인정보처리방침</a></li>
+                <li><a href="/terms">이용약관</a></li>
+              </ul>
+            </details>
+          </li>
         </ul>
       </nav>
     </div>
@@ -221,8 +230,9 @@
         <p>© <span id="currentYear">2026</span> 준호네소프트웨어. All rights reserved.</p>
       </div>
       <div>
-        <h3>정책</h3>
+        <h3>바로가기</h3>
         <ul>
+          <li><a href="/guide">사용 가이드</a></li>
           <li><a href="/notices/">공지사항</a></li>
           <li><a href="/privacy">개인정보 처리방침</a></li>
           <li><a href="/terms">서비스 이용약관</a></li>

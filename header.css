@@ -90,6 +90,77 @@
   font-weight: 750;
 }
 
+/* ── '더보기' 드롭다운 (정책 페이지 묶음) ── */
+.site-header .nav-has-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .nav-more-d {
+  position: relative;
+  display: inline-flex;
+}
+
+/* <summary> 를 버튼처럼 — 기본 디스클로저 마커 제거 */
+.site-header .nav-more {
+  list-style: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.site-header .nav-more::-webkit-details-marker { display: none; }
+.site-header .nav-more::marker { content: ""; }
+
+.site-header .nav-more-caret {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 1px;
+  background-color: currentColor;
+  -webkit-mask: url(assets/ic_caret.svg) center / 11px 11px no-repeat;
+          mask: url(assets/ic_caret.svg) center / 11px 11px no-repeat;
+  transition: transform 0.2s ease;
+}
+.site-header .nav-more-d[open] .nav-more-caret { transform: rotate(180deg); }
+
+/* 닫힘 상태에서는 메뉴를 숨긴다 (position:absolute 라 details 기본 숨김이 안 먹는 경우 대비) */
+.site-header .nav-more-d:not([open]) .nav-menu { display: none; }
+
+.site-header .nav-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 210px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fffdfb;
+  border: 1px solid rgba(243, 216, 207, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 18px 36px rgba(94, 63, 55, 0.16);
+  z-index: 60;
+}
+.site-header .nav-menu li { margin: 0; }
+.site-header .nav-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #5b4f49;
+  font-size: 0.92rem;
+  font-weight: 650;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.site-header .nav-menu a:hover {
+  background: #ffe1d9;
+  color: #e85f4f;
+}
+.site-header .nav-menu a.is-active {
+  background: #fff1ec;
+  color: #e85f4f;
+  font-weight: 750;
+}
+
 /* 좁은 화면: 로고 아이콘 + 미니멀 텍스트 메뉴를 한 줄로 (원래 탑바 스타일) */
 @media (max-width: 720px) {
   .site-header {
