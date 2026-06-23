@@ -123,6 +123,7 @@ function sitemapXml(notices) {
   const staticPages = [
     { loc: `${SITE_ORIGIN}/`, lastmod: today, changefreq: "weekly", priority: "1.0" },
     { loc: `${SITE_ORIGIN}/notices/`, lastmod: today, changefreq: "weekly", priority: "0.7" },
+    { loc: `${SITE_ORIGIN}/guide`, lastmod: today, changefreq: "monthly", priority: "0.6" },
     { loc: `${SITE_ORIGIN}/privacy`, lastmod: today, changefreq: "yearly", priority: "0.4" },
     { loc: `${SITE_ORIGIN}/terms`, lastmod: today, changefreq: "yearly", priority: "0.4" },
   ];
