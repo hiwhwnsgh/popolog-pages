@@ -1,11 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "app.popolog.app",
       "sha256_cert_fingerprints": [
-        "41:5F:BA:2F:79:1D:B4:61:7C:CA:38:2D:11:4B:0D:21:08:5C:92:12:53:57:23:B4:3D:7D:E6:CD:7D:D8:DC:7D"
+        "41:5F:BA:2F:79:1D:B4:61:7C:CA:38:2D:11:4B:0D:21:08:5C:92:12:53:57:23:B4:3D:7D:E6:CD:7D:D8:DC:7D",
+        "83:7C:E7:F4:65:62:B5:82:5D:E3:40:E8:BF:48:E9:FF:FD:1D:E3:51:E0:DE:29:B6:6F:BE:F0:FF:3C:97:FD:4A"
       ]
     }
   }
